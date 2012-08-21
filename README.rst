@@ -3,6 +3,11 @@
 extSciTE
 =============================
 
+Installation sous Linux
+--------------------------------------------
+
+@todo
+
 Installation sous Windows
 --------------------------------------------
 
@@ -41,9 +46,10 @@ Installation sous Windows
         
             ext.lua.debug.traceback=1
             
-        - ? ::
+        ..
+            - ? ::
         
-            #ext.lua.reset=1
+                #ext.lua.reset=1
             
     - Configurer le script de chargement principal ``SciTEStartup.lua`` (menu --> Options --> Open Lua Startup Scripts) et ajouter ::
 
@@ -70,7 +76,6 @@ Installation sous Windows
         dofile "C:\\Documents and Settings\\myloginname\\extSciTE\\extman\\extman.lua"
 
 
-
 Lua Startup Scripts
 --------------------------------------------
 
@@ -78,42 +83,94 @@ Ce script est exécuté à chaque démarrage de SciTE. On exécute alors le scri
 
 Extman se charge ensuite d'exécuter les scripts présents dans le répertoire extman/scite_lua (cf option ``ext.lua.directory``)
 
-``extman`` ajoute aussi un raccourci clavier SHIFT+CTRL+R qui permet de recharger le script lua en cours d'édition. Cf aussi présence dans le menu --> Tools --> Reload Script.
+Le script ``extman`` ajoute aussi un raccourci clavier SHIFT+CTRL+R qui permet de recharger le script lua en cours d'édition. Cf aussi présence dans le menu --> Tools --> Reload Script.
 Si on édite le fichier ``SciTEStartup.lua`` alors on relancera ``extman.lua`` et les autres scripts en cascade.
 
+nodeSciTE
+------------------------------------------------------
 
-scite_lua/001first.lua
+Compagnon de SciTE en charge d'analyser le code en cours d'édition (jslint, ... )
+
+.. note :: ne fonctionne que pour les scripts ``*.js`` pour le moment
+
+Installation de nodeSciTE
+.............................................................
+
+- installer extSciTE au préalable
+- ouvrir la console DOS
+- ``cd "C:\Documents and Settings\myloginname\extSciTE\nodeSciTE"``
+- ``npm install``
+- ``npm install -g nodemon``
+- ``node nodeSciTE.js`` ou ``nodemon nodeSciTE.js``
+
+Exécution de nodeSciTE au démarrage
+.............................................................
+
+manuel : 
+
+- ouvrir la console
+- ``cd "nodeSciTE"``
+- ``nodemon nodeSciTE.js``
+
+automatique : 
+
+- Lancer le serveur nodeSciTE au démarrage de votre session : @todo
+
+Corriger le port de nodeSciTE
+.............................................................
+
+le serveur nodeSciTE écoute sur le port 3891. 
+
+@todo : configurer le port d'écoute. Pour le moment, corriger en dur dans le fichier ``extSciTE/nodeSciTE/nodeSciTE.js``
+
+
+extSciTE/extman/scite_lua/001first.lua
 --------------------------------------------
 
 Indique que extSciTE est bien chargé
 
-scite_lua/020execlua.lua
+extSciTE/extman/scite_lua/020execlua.lua
 --------------------------------------------
 
 Permet d'éxécuter code lua présent dans la console. 
 Utilisé par 030bookmark.lua et 040dir.lua. 
 
-scite_lua/030bookmark.lua
+extSciTE/extman/scite_lua/030bookmark.lua
 --------------------------------------------
 
-CTRL+B : affiche les bookmarks de deux natures :
+.. note:: version alpha. Editer le fichier ``extSciTE/extman/scite_lua/030bookmark.lua`` pour ajouter/éditer/supprimer les bookmarks.
+
+CTRL+B : affiche les bookmarks dans la console SciTE :
 
     - fichiers préférés ( on peut même définir la ligne à afficher : utile pour descendre à la dernière ligne du fichier apache2/access.log par exemple : initialiser alors à 10000000000 )
     - code lua à exécuter ( afficher un message, fonction à lancer ... )
     
 Pour aérer les bookmark, il y a aussi possibilité d'affichers des séparateurs
 
-scite_lua/040dir.lua
+extSciTE/extman/scite_lua/040dir.lua
 --------------------------------------------
 
-CTRL+SHIFT+O : liste les autres fichiers dans le répertoire du fichier édité
+CTRL+SHIFT+O : affiche dans la console SciTE le contenu du répertoire du fichier courant.
 
-scite_lua/800node.lua
+extSciTE/extman/scite_lua/800node.lua
 --------------------------------------------
 
-se charge d'envoyer le contenu du buffer à analyser au serveur node ( jslint, etc ... ). Afficher le résultat sous forme d'annotation.
+se charge d'envoyer le contenu du buffer à analyser au serveur nodeSciTE ( jslint, etc ... ). 
+Afficher le résultat sous forme d'annotation.
 
+Voir la section ci-dessus nodeSciTE pour installer et démarrer ce serveur.
 
+Editer ``SciTEUser.properties`` pour ajouter des options spécifiques à ce module (menu --> Options --> Open User Options File) ::
+
+    # ------------------------------------------------------------------------
+    # nodejs
+    # ------------------------------------------------------------------------
+    extscite.node.host=http://127.0.0.1
+    extscite.node.port=3891
     
 
+
+        
     
+
+Enjoy !    
