@@ -97,6 +97,7 @@ Installation de nodeSciTE
 .............................................................
 
 - installer extSciTE au préalable
+- installer nodejs : http://nodejs.org/download/
 - ouvrir la console DOS
 - ``cd "C:\Documents and Settings\myloginname\extSciTE\nodeSciTE"``
 - ``npm install``
