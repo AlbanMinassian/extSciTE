@@ -12,7 +12,9 @@
 --    extscite.node.port=3891
 -- -------------------------------------------------------------------------------------------------------
 nodeHost = scite_GetProp('extscite.node.host') -- host du serveur nodejs. Ne pas écrire "local nodeHost = ", nodeHost doit être global
+if nodeHost == nil then nodeHost = 'http://127.0.0.1'; end
 nodePort = scite_GetProp('extscite.node.port') -- port du serveur nodejs. Ne pas écrire "local nodePort = ", nodePort doit être global
+if nodePort == nil then nodePort = '3891'; end
 nodeURL = nodeHost..':'..nodePort;
 
 -- -------------------------------------------------------------------------------------------------------
