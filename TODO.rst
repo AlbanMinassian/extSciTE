@@ -1,16 +1,43 @@
-- améliorer ``01execlua.lua`` => tester CTRL, SHIFT, tester ``execlua[`` et ``]`` ...
-- tous les script scite_lua\XXyyyy.lua => accéder rapidement au code source !
-- nodejs : implanter timer pour lire données de node  : 
+.. -*- coding: utf-8 -
+
+- amÃ©liorer ``01execlua.lua`` => tester CTRL, SHIFT, tester ``execlua[`` et ``]`` ...
+- tous les script scite_lua\XXyyyy.lua => accÃ©der rapidement au code source !
+- nodejs : implanter timer pour lire donnÃ©es de node  : 
 
     - http://stackoverflow.com/questions/6118799/creating-a-timer-using-lua
     - https://groups.google.com/forum/?fromgroups#!searchin/scite-interest/interval/scite-interest/US-KRdcziUU/nkueGu5bDwgJ[1-25
 
-- ou utiliser udp depusi nodejs pour indiquer une évolution ? : 
+- ou utiliser udp depusi nodejs pour indiquer une Ã©volution ? : 
 
     - https://love2d.org/wiki/Tutorial:Networking_with_UDP
     
-- tester md5 de la réponse avant d'appliquer code    
-- configurer le port d'écoute de nodeSciTE
-- expliquer comment démarrer nodeSciTE automatiquement au démarrage de la session
+- tester md5 de la rÃ©ponse avant d'appliquer code    
+- configurer le port d'Ã©coute de nodeSciTE
+- expliquer comment dÃ©marrer nodeSciTE automatiquement au dÃ©marrage de la session
 
 - utiliser sqlite pour les bookmarks
+
+dans 030bookmark et 040dir.lua ==> tester que 020execlua.lua est chargÃ© => si non =, alors afficher message d'erreur
+    -=> juster jaouter dans 020execlua.lua une variable globale ``withExeclua=1`` ... et tester variable si aprÃ¨s (si ~= nil )
+    
+install windwos : 
+
+        - BUG Si le mesage "hello extSciTE" ne s'affiche pas dans la console, c'est qu'il a peut Ãªtre un pb de droit.
+            - corriger le fichier ``"C:\\Documents and Settings\\myloginname\\extSciTE\\extman\\extman.lua"`` et Ã  la ligne 294, corriger ``tmpfile = '\\scite_temp1'`` en ``tmpfile = '"C:\\Documents and Settings\\myloginname\\scite_temp1"'``
+            - sinon corriger le code extman.lua et corriger la fonction qui rÃ©cupÃ¨re liste des *.lua ::
+            
+                local files = {}
+                append(files, path..'001first.lua')
+                append(files, path..'020execlua.lua')
+                append(files, path..'030bookmark.lua')
+                append(files, path..'040dir.lua')
+                append(files, path..'800nodeSciTE.lua')
+                return files
+                
+            - ou utiliser lfs ???
+
+            ==> NE MARCHE PAS, NECESSITE DROIT ADMINISTRATEUR ????    
+            
+            
+- ajouter tictactoc            
+- ouvrir explorer 

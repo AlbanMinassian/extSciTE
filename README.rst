@@ -1,53 +1,114 @@
 .. -*- coding: utf-8 -
 
+Introduction
+=============================
+
+``SciTE`` est un éditeur multiplatforme léger et hautement configurable. 
+
+J'utilise ``extSciTE`` comme mémo pour réinstaller cet éditeur sur une nouvelle machine
+et rapidement ajouter quelques scripts pratiques pour un usage quotidien.
+
+
 extSciTE
 =============================
+
 
 Installation sous Linux
 --------------------------------------------
 
-@todo
+- ``sudo apt-get install git``
+- ``sudo apt-get install lua5.1``
+- ``sudo apt-get install liblua5.1-socket2``
+- ``sudo apt-get install liblua5.1-socket-dev``
+- ``sudo apt-get install lua5.1-filesystem``
+- Lancer la console et exécuter la commande ``lua`` : un prompt s'affiche invitant à saisir du code lua. Tester le code ``socket = require "socket";print(socket._VERSION);`` sans génèrer une erreur dans la console. 
+- ``sudo apt-get install scite``
+- Télécharger https://github.com/ami44/extSciTE.git dans ``/home/myloginname/extSciTE`` : ``cd /home/myloginname && git clone https://github.com/ami44/extSciTE.git``
+- Exécuter SciTE : 
+
+    - Editer ``.SciTEUser.properties`` (menu --> Options --> Open User Options File) pour ajouter des options spécifiques à ``extman.lua`` : ::
+
+            -- -*- coding: utf-8 -
+            # ------------------------------------------------------------------------
+            # extman.lua
+            # ------------------------------------------------------------------------
+            # Indiquer à ``extman.lua`` où se trouve les scripts lua à charger
+            ext.lua.directory=/home/myloginname/extSciTE/extman/scite_lua
+            # si on modifie le fichier ``SciTEStartup.lua`` alors SciTE le relancera automatique ( cf aussi SHIFT+CTRL+R)
+            ext.lua.auto.reload=1
+            # option utile pour le développement
+            ext.lua.debug.traceback=1
+            # (facultatif) Emplacement spécifique du script de chargement si on n'utilise pas le fichier ``SciTEStartup.lua`` par défaut
+            #~ ext.lua.startup.script=$(SciteUserHome)/SciTEStartup.lua
+            
+    - Editer le script de chargement principal ``SciTEStartup.lua`` (menu --> Options --> Open Lua Startup Scripts) et ajouter ::
+
+        -- -*- coding: utf-8 -
+        -- -------------------------------------------------------------------------------------------------------
+        -- Extension
+        -- charger les extensions *avant* d'exécuter extman.lua
+        -- -------------------------------------------------------------------------------------------------------
+        -- corriger le chemin des extensions (à revoir)
+        package.path = package.path..';/usr/share/lua/5.1/?.lua'
+        package.cpath = package.path..';/usr/lib/lua/5.1/?.so'
+        -- charger les extensions
+        io = require "io";
+        socket = require "socket";
+        mime = require "mime";
+        ltn12 = require "ltn12";
+        http = require "socket.http";
+        url = require "socket.url";
+        ftp = require "socket.ftp";
+        tp = require "socket.tp";
+        lfs = require "lfs";
+
+        -- -------------------------------------------------------------------------------------------------------
+        -- extman.lua
+        -- ce script exécutera ensuite les scripts présents dans le répertoire extman/scite_lua
+        -- -------------------------------------------------------------------------------------------------------
+        dofile "/home/myloginname/extSciTE/extman/extman.lua"
+        
+- Redémarrer SciTE et constater dans la console que les modules de extSciTE se chargent :
+
+    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/console.png
+        :alt: chargement des modules extSciTE
+        :align: center
+    
+- installer/démarrer nodeSciTE (cf ci-dessous) 
 
 Installation sous Windows
 --------------------------------------------
 
 - Installer luaforwindows : http://code.google.com/p/luaforwindows/
-- Lancer la console et exécuter la commande ``lua`` : un prompt s'affiche invitant à saisir du code lua. Tester le code ``socket = require "socket";`` sans génèrer une erreur dans la console. Si erreur alors corriger les variables d'environnement :
+- Lancer la console et exécuter la commande ``lua`` : un prompt s'affiche invitant à saisir du code lua. Tester le code ``socket = require "socket";print(socket._VERSION);`` sans génèrer une erreur dans la console. Si erreur alors corriger les variables d'environnement :
 
     - Windows XP : Démarrer --> Panneau de configuration --> Système --> Avancé --> Variables d'environnement --> Variables système
     - LUA_CPATH = ``C:\Program Files\Lua\5.1\clibs\?.dll``
     - LUA_PATH = ``;C:\Program Files\Lua\5.1\lua\?.luac;C:\Program Files\Lua\5.1\lua\?.lua``
 
 - Installer SciTE ( http://www.scintilla.org/SciTEDownload.html ) dans le répertoire ``C:\Documents and Settings\myloginname\wscite`` et ajouter le raccourci de SciTE sur le bureau + barre de lancement rapide (explorer --> SciTE.exe --> clic droit --> Envoyer vers --> Bureau (créer un raccourci)) 
-- Télécharger https://github.com/ami44/extSciTE.git dans ``C:\Documents and Settings\myloginname\extSciTE``
-- Exécuter SciTE 
+- Télécharger https://github.com/ami44/extSciTE.git dans ``C:\Documents and Settings\myloginname\extSciTE`` (télécharger le zip)
+- Exécuter SciTE : 
 
-    - Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) pour ajouter des options spécifiques à ``extman.lua`` : 
-    
-        - Indiquer à ``extman.lua`` où se trouve les scripts lua à charger ::
+    - Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) pour ajouter des options spécifiques à ``extman.lua`` : ::
         
             -- -*- coding: utf-8 -
             # ------------------------------------------------------------------------
             # extman.lua
             # ------------------------------------------------------------------------
+            # Indiquer à ``extman.lua`` où se trouve les scripts lua à charger
             ext.lua.directory=C:\Documents and Settings\myloginname\extSciTE\extman\scite_lua
-            
-        - si on modifie le fichier ``SciTEStartup.lua`` alors SciTE le relancera automatique ( cf aussi SHIFT+CTRL+R) ::
-        
+            # si on modifie le fichier ``SciTEStartup.lua`` alors SciTE le relancera automatique ( cf aussi SHIFT+CTRL+R)
             ext.lua.auto.reload=1
-            
-        - option utile pour le développement ::
-        
+            # option utile pour le développement
             ext.lua.debug.traceback=1
-
-        - (facultatif) Emplacement spécifique du script de chargement si on n'utilise pas le fichier ``SciTEStartup.lua`` par défaut  ::
-        
-            # ext.lua.startup.script=$(SciteUserHome)/SciTEStartup.lua
+            # (facultatif) Emplacement spécifique du script de chargement si on n'utilise pas le fichier ``SciTEStartup.lua`` par défaut
+            #~ ext.lua.startup.script=$(SciteUserHome)/SciTEStartup.lua
             
-        ..
-            - ? ::
-        
-                #ext.lua.reset=1
+    ..
+        - ? ::
+    
+            #ext.lua.reset=1
                 
     - Editer le script de chargement principal ``SciTEStartup.lua`` (menu --> Options --> Open Lua Startup Scripts) et ajouter ::
 
@@ -78,40 +139,29 @@ Installation sous Windows
     .. image:: https://github.com/ami44/extSciTE/raw/master/assets/console.png
         :alt: chargement des modules extSciTE
         :align: center
+        
     
 - installer/démarrer nodeSciTE (cf ci-dessous) 
 
-.. 
-        - BUG Si le mesage "hello extSciTE" ne s'affiche pas dans la console, c'est qu'il a peut être un pb de droit.
-            - corriger le fichier ``"C:\\Documents and Settings\\myloginname\\extSciTE\\extman\\extman.lua"`` et à la ligne 294, corriger ``tmpfile = '\\scite_temp1'`` en ``tmpfile = '"C:\\Documents and Settings\\myloginname\\scite_temp1"'``
-            - sinon corriger le code extman.lua et corriger la fonction qui récupère liste des *.lua ::
-            
-                local files = {}
-                append(files, path..'001first.lua')
-                append(files, path..'020execlua.lua')
-                append(files, path..'030bookmark.lua')
-                append(files, path..'040dir.lua')
-                append(files, path..'800nodeSciTE.lua')
-                return files
-
-            ==> NE MARCHE PAS, NECESSITE DROIT ADMINISTRATEUR ????
         
 Lua Startup Scripts
 --------------------------------------------
 
 Emplacement du fichier ``SciTEStartup.lua`` : menu --> Options --> Open Lua Startup Scripts
 
-Ce script est exécuté à chaque démarrage de SciTE. On exécute le script ``extman.lua`` (http://lua-users.org/wiki/SciteExtMan) qui étend les fonctionnalités lua de SciTE. 
+Ce script est exécuté au démarrage de SciTE. On exécute le script ``extman.lua`` (http://lua-users.org/wiki/SciteExtMan) qui étend les fonctionnalités lua de SciTE. 
 
 Extman se charge ensuite d'exécuter les scripts présents dans le répertoire extSciTE/extman/scite_lua (cf option ``ext.lua.directory``)
 
 Le script ``extman.lua`` ajoute aussi un raccourci clavier SHIFT+CTRL+R qui permet de recharger le script lua en cours d'édition. Cf aussi présence dans le menu --> Tools --> Reload Script.
 Si on édite le fichier ``SciTEStartup.lua`` alors on relancera ``extman.lua`` et les autres scripts en cascade.
 
+
 nodeSciTE
 ------------------------------------------------------
 
-.. note :: nodeSciTE analyse que les scripts ``*.js`` pour le moment
+
+.. note:: nodeSciTE n'analyse que les scripts ``*.js`` pour le moment
 
 Compagnon de SciTE en charge d'analyser le code en cours d'édition (jslint...)
 
@@ -122,7 +172,10 @@ Installation de nodeSciTE
 - installer ``extSciTE`` au préalable
 - installer nodejs & npm : http://nodejs.org/download :
 
-    - Linux : @todo
+    - Linux : 
+        
+        - sudo ``apt-get install nodejs``
+        
     - Windows : 
     
         - si administrateur : télécharger node-vX.Y-x86.msi (installe node et npm en même temps)
@@ -142,7 +195,7 @@ Installation de nodeSciTE
         
         
 - ouvrir la console
-- linux : ``cd "pathto/extSciTE/nodeSciTE"``
+- linux : ``cd "/home/myloginname/extSciTE/nodeSciTE"``
 - windows : ``cd "C:\Documents and Settings\myloginname\extSciTE\nodeSciTE"``
 - ``npm install``
 - exécuter nodeSciTE (lire ci-après)
@@ -155,7 +208,7 @@ Manuel :
     - linux : 
     
         - ouvrir la console bash
-        - ``cd "pathto/extSciTE/nodeSciTE"``
+        - ``cd "/home/myloginname/extSciTE/nodeSciTE"``
         - ``node nodeSciTE.js``
 
     - windows : 
@@ -187,8 +240,35 @@ Si on corrige en dur le port dans le fichier ``extSciTE/nodeSciTE/nodeSciTE.js``
     extscite.node.port=9999
 
 
+SciTE
+=============================
+
+Liste des options : http://www.scintilla.org/SciTEDoc.html
+
+Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
+
+
+    buffers=30
+    save.session=1
+    check.if.already.open=1
+    open.dialog.in.file.directory =1
+    find.replace.advanced =1
+    # code.page=65001
+    # output.code.page=65001
+    properties.directory.enable=1
+    
+    if PLAT_GTK
+        all.files=All Files (*)|*|Hidden Files (.*)|.*|
+    open.filter=\
+    $(all.files)
+
+
+
+
 Modules extSciTE
 =============================
+
+.. note:: pour désactiver un module : simplement renommer le fichier sans l'extension ``.lua`` pour ne plus être pris en compte. Pour le réactiver : remettre l'extension ``.lua``.
 
 
 extSciTE/extman/scite_lua/001first.lua
@@ -226,8 +306,7 @@ se charge d'envoyer le contenu du buffer à analyser au serveur nodeSciTE ( jsli
 Afficher le résultat sous forme d'annotation.
 
 Voir la section ci-dessus nodeSciTE pour installer et démarrer ce serveur.
-
-        
-    
+       
+  
 
 Enjoy !    

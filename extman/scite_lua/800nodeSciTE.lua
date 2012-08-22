@@ -191,7 +191,7 @@ else
     _ALERT('> le serveur nodeSciTE n\'est pas démarré')
     _ALERT('> ou n\'écoute pas à cette adresse '..nodeURL..'')
     _ALERT('> cd extSciTE/nodeSciTE')
-    _ALERT('> nodemon nodeSciTE.js')
+    _ALERT('> node nodeSciTE.js')
     _ALERT('> lire README.rst !')
     _ALERT('[/module]')
 end
