@@ -200,7 +200,7 @@ Installation de nodeSciTE
 - linux : ``cd "/home/myloginname/extSciTE/nodeSciTE"``
 - windows : ``cd "C:\Documents and Settings\myloginname\extSciTE\nodeSciTE"``
 - ``npm install``
-- corriger ``extSciTE\nodeSciTE\node_modules\jslint\lib\jslint.js`` et corriger ``maxerr    : 1000`` en ``maxerr    : 10000``
+- @revoir : ne fonctionne pas !!! corriger ``extSciTE\nodeSciTE\node_modules\jslint\lib\jslint.js`` et corriger ``maxerr    : 1000`` en ``maxerr    : 10000``
 - exécuter nodeSciTE (lire ci-après)
 
 Exécution de nodeSciTE (manuel ou automatique)
@@ -311,6 +311,22 @@ extSciTE/extman/scite_lua/040dir.lua
 --------------------------------------------
 
 CTRL+SHIFT+O : affiche dans la console SciTE le contenu du répertoire du fichier courant.
+
+extSciTE/extman/scite_lua/52outputToEditor.lua
+--------------------------------------------
+
+CTRL+7 : copier le contenu de la console dans un fichier ``console.txt`` et l'ouvre tout de suite dans SciTE.
+
+extSciTE/extman/scite_lua/ 100tictacto.lua
+--------------------------------------------
+
+CTRL+8 : A utiliser avec font monospace (CTRL+F11)
+
+extSciTE/extman/scite_lua/101eliza.lua
+--------------------------------------------
+
+CTRL+9 : crazy elisa
+
 
 extSciTE/extman/scite_lua/800node.lua
 --------------------------------------------
