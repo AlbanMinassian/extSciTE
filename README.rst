@@ -317,7 +317,12 @@ extSciTE/extman/scite_lua/52outputToEditor.lua
 
 CTRL+7 : copier le contenu de la console dans un fichier ``console.txt`` et l'ouvre tout de suite dans SciTE.
 
-extSciTE/extman/scite_lua/ 100tictacto.lua
+extSciTE/extman/scite_lua/53openexplorer.lua
+--------------------------------------------
+
+CTRL+6 : ouvrir l'explorateur de fichier
+
+extSciTE/extman/scite_lua/100tictacto.lua
 --------------------------------------------
 
 CTRL+8 : A utiliser avec font monospace (CTRL+F11)
