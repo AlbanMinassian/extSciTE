@@ -62,6 +62,7 @@ end
 -- exmple : response, code, header = get('http://127.0.0.1')
 -- -------------------------------------------------------------------------------------------------------
 local function get(argUrl)
+
     response_body = {}
     r, code, header = socket.http.request{ 
         method = "GET",
@@ -72,7 +73,7 @@ local function get(argUrl)
     
     -- print(r); print(code); 
     -- for k,v in pairs(header) do print(k,v) end
-    -- print(response)
+    -- print(response)    
 
     return response, code, header;
 end
@@ -87,8 +88,8 @@ end
 -- -------------------------------------------------------------------------------------------------------
 local function post(argUrl, argFormElement)
 
-    request_body = formencode(argFormElement)
     response_body = {}
+    request_body = formencode(argFormElement)
     r, code, header = socket.http.request{
         method = "POST",
         url = argUrl,
@@ -132,7 +133,7 @@ function SendToNodejs()
             print('pb avec le serveur nodeSciTE !')
             print("response = "..response)
             print("code = "..code)
-            for k,v in pairs(header) do print(k,v) end
+            -- for k,v in pairs(header) do print(k,v) end <== plante car pas de header
         end
     end 
 end
@@ -141,6 +142,9 @@ end
 -- get from node
 -- ----------------------------------------------------------------------------------------   
 function GetFromNodejs()      
+    
+--~     print('GetFromNodejs');
+    
     response, code, header = post(nodeURL, {
         SciteDefaultHome = props['SciteDefaultHome'],
         SciteUserHome = props['SciteUserHome'],
@@ -148,35 +152,12 @@ function GetFromNodejs()
     })
 
     if code == 200 and response ~= '' then
-        print(response);            
---~         dostring(response); // nodeSciTE renvoie directement une réponse lua prête à être consommé
+--~         print('--[ dostring --------------------------------------');
+--~         print(response);            
+--~         print('--] --------------------------------------');
+        dostring(response); -- nodeSciTE renvoie directement une réponse lua prête à être consommé
     end
 end
-
--- ---------------------------------------------------------------------------------------- 
--- scite_OnOpen
--- ---------------------------------------------------------------------------------------- 
-scite_OnOpen(function()
-	if ( withNodeSciTE == 1 ) then SendToNodejs(); end;
-end)
-
--- ---------------------------------------------------------------------------------------- 
--- OnChar
--- ---------------------------------------------------------------------------------------- 
--- avantage de OnChar() c'est qu'il ne se déclenche que quand on ajoute/supprimer un caractère 
--- et ne déclenche pas lors du déplacement du curseur ( sinon utiliser OnKey ou OnUpdateUI ... )
--- ---------------------------------------------------------------------------------------- 
-scite_OnChar(function(charAdded)
-	if ( withNodeSciTE == 1 ) then SendToNodejs(); end;
-end)
-
--- ---------------------------------------------------------------------------------------- 
--- scite_OnUpdateUI
--- en l'absence d'interval, je vais utiliser cette méthode pour aller chercher les infos nécessaire
--- ---------------------------------------------------------------------------------------- 
-scite_OnUpdateUI(function() -- function system
-	if ( withNodeSciTE == 1 ) then GetFromNodejs(); end;
-end)
 
 -- ---------------------------------------------------------------------------------------- 
 -- tester si nodejs est démarré
@@ -187,6 +168,9 @@ if (code == 200) then
 	withNodeSciTE = 1;
     _ALERT('[module] nodeSciTE (listening '..nodeURL..')')
 else
+
+--~     print(response); print(code); 
+    
 	withNodeSciTE = 0;
     _ALERT('[module] nodeSciTE')
     _ALERT('> le serveur nodeSciTE n\'est pas démarré')
@@ -196,4 +180,56 @@ else
     _ALERT('> lire README.rst !')
     _ALERT('[/module]')
 end
+
+-- ---------------------------------------------------------------------------------------- 
+-- scite_OnOpen
+-- ---------------------------------------------------------------------------------------- 
+scite_OnOpen(function()
+	if ( withNodeSciTE == 1 ) then SendToNodejs(); end;
+end)
+
+-- ---------------------------------------------------------------------------------------- 
+-- scite_OnChar 
+-- ---------------------------------------------------------------------------------------- 
+-- Avantage : OnChar() c'est qu'il ne se déclenche que quand on ajoute/supprimer un caractère 
+-- et ne déclenche pas lors du déplacement du curseur ( sinon utiliser OnKey ou OnUpdateUI ... )
+-- Inconvénient : editor:GetText() ne tient pas compte du buffer mis à jour
+-- Inconvénient : se déclenche apres scite_OnKey()
+-- ---------------------------------------------------------------------------------------- 
+--~ scite_OnChar(function(charAdded)
+--~ 	if ( withNodeSciTE == 1 ) then 
+--~         print('scite_OnChar');
+--~         print(editor:GetText());
+--~         SendToNodejs(); 
+--~     end;
+--~ end)
+
+-- ---------------------------------------------------------------------------------------- 
+-- scite_OnKey 
+-- ---------------------------------------------------------------------------------------- 
+scite_OnKey(function(argKey)
+    if ( withNodeSciTE == 1 ) then 
+--~         if ( -- car scite_OnChar ne réagit pour ces caractères
+--~             argKey == 8 -- touche ``backspace``
+--~             or argKey == 46 -- touche ``supprimer``
+--~         ) then 
+            SendToNodejs(); 
+--~         end
+        -- lire si résultat quoi qu'il arrive
+        GetFromNodejs(); 
+    end
+end)
+
+
+-- ---------------------------------------------------------------------------------------- 
+-- scite_OnUpdateUI
+-- en l'absence d'interval, je vais utiliser cette méthode pour aller chercher les infos nécessaire
+-- ABANDON, TROP HARD A GERER
+-- ---------------------------------------------------------------------------------------- 
+--~ scite_OnUpdateUI(function() -- function system
+--~     if ( withNodeSciTE == 1 ) then 
+--~             GetFromNodejs(); 
+--~     end;
+--~ end)
+
 
