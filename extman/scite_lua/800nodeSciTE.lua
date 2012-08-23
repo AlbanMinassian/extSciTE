@@ -125,7 +125,7 @@ function SendToNodejs()
             SciteDefaultHome = props['SciteDefaultHome'],
             SciteUserHome = props['SciteUserHome'],
             FilePath = props['FilePath'],
-            actions = 'jslint, jshint',
+            actions = 'jslint,jshint',
             code = editor:GetText()
         })
         if (code ~= 200) then
@@ -141,13 +141,14 @@ end
 -- get from node
 -- ----------------------------------------------------------------------------------------   
 function GetFromNodejs()      
-    response, code, header = get(nodeURL, {
+    response, code, header = post(nodeURL, {
         SciteDefaultHome = props['SciteDefaultHome'],
         SciteUserHome = props['SciteUserHome'],
         FilePath = props['FilePath'],
     })
---~     print(response);            
-    if code == 200 then
+
+    if code == 200 and response ~= '' then
+        print(response);            
 --~         dostring(response); // nodeSciTE renvoie directement une réponse lua prête à être consommé
     end
 end
