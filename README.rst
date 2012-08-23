@@ -147,13 +147,15 @@ Installation sous Windows
 Lua Startup Scripts
 --------------------------------------------
 
-Emplacement du fichier ``SciTEStartup.lua`` : menu --> Options --> Open Lua Startup Scripts
+Emplacement du script ``SciTEStartup.lua`` : menu --> Options --> Open Lua Startup Scripts
 
-Ce script est exécuté au démarrage de SciTE. On exécute le script ``extman.lua`` (http://lua-users.org/wiki/SciteExtMan) qui étend les fonctionnalités lua de SciTE. 
+Le script ``SciTEStartup.lua`` est exécuté au démarrage de SciTE. 
+On exécute tout de suite le script ``extman.lua`` (http://lua-users.org/wiki/SciteExtMan) qui étend les 
+fonctionnalités lua de SciTE. J'ai amélioré ``extman.lua`` en ajoutant la méthode ``scite_OnKey()``. 
 
-Extman se charge ensuite d'exécuter les scripts présents dans le répertoire extSciTE/extman/scite_lua (cf option ``ext.lua.directory``)
-
-Le script ``extman.lua`` ajoute aussi un raccourci clavier SHIFT+CTRL+R qui permet de recharger le script lua en cours d'édition. Cf aussi présence dans le menu --> Tools --> Reload Script.
+Le script ``extman.lua`` se charge ensuite d'exécuter les scripts présents dans 
+le répertoire extSciTE/extman/scite_lua (cf option ``ext.lua.directory``). Il ajoute aussi un raccourci clavier 
+SHIFT+CTRL+R qui permet de recharger le script lua en cours d'édition (Cf menu --> Tools --> Reload Script ).
 Si on édite le fichier ``SciTEStartup.lua`` alors on relancera ``extman.lua`` et les autres scripts en cascade.
 
 
@@ -198,6 +200,7 @@ Installation de nodeSciTE
 - linux : ``cd "/home/myloginname/extSciTE/nodeSciTE"``
 - windows : ``cd "C:\Documents and Settings\myloginname\extSciTE\nodeSciTE"``
 - ``npm install``
+- corriger ``extSciTE\nodeSciTE\node_modules\jslint\lib\jslint.js`` et corriger ``maxerr    : 1000`` en ``maxerr    : 10000``
 - exécuter nodeSciTE (lire ci-après)
 
 Exécution de nodeSciTE (manuel ou automatique)
@@ -256,6 +259,16 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     # code.page=65001
     # output.code.page=65001
     properties.directory.enable=1
+    title.full.path=1
+    title.show.buffers=1    
+    pathbar.visible=1
+    save.position=1
+    line.margin.visible=1
+    highlight.current.word=1
+    find.files=*
+    tabsize=4
+    indent.size=4
+    use.tabs=0
     
     if PLAT_GTK
         all.files=All Files (*)|*|Hidden Files (.*)|.*|
@@ -302,8 +315,14 @@ CTRL+SHIFT+O : affiche dans la console SciTE le contenu du répertoire du fichie
 extSciTE/extman/scite_lua/800node.lua
 --------------------------------------------
 
-se charge d'envoyer le contenu du buffer à analyser au serveur nodeSciTE ( jslint, etc ... ). 
-Afficher le résultat sous forme d'annotation.
+.. note:: version alpha, très instable ;-)
+
+Scite envoie le contenu du code à analyser au serveur nodeSciTE ( jslint, etc ... ). 
+Afficher le résultat sous forme d'annotation dans SciTE :
+
+    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/nodescite.png
+        :alt: chargement des modules extSciTE
+        :align: center
 
 Voir la section ci-dessus nodeSciTE pour installer et démarrer ce serveur.
        
