@@ -21,6 +21,7 @@ local find = string.find
 local size = table.getn
 local sub = string.sub
 local gsub = string.gsub
+local _Key = {}
 
 function OnUserListSelection(tp,str)
   if _UserListSelection then 
@@ -62,6 +63,10 @@ end
 
 function OnChar(ch)
   return DispatchOne(_Char,ch)
+end
+
+function OnKey(ky)
+  return DispatchOne(_Key,ky)
 end
 
 function OnSave(file)
@@ -154,6 +159,10 @@ end
 
 function scite_OnChar(fn,remove)
   append_unique(_Char,fn,remove)  
+end
+
+function scite_OnKey(fn,remove)
+  append_unique(_Key,fn,remove)  
 end
 
 function scite_OnOpenSwitch(fn,remove)
