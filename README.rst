@@ -61,6 +61,7 @@ Installation sous Linux
         ftp = require "socket.ftp";
         tp = require "socket.tp";
         lfs = require "lfs";
+        require "luasql.sqlite3";
 
         -- -------------------------------------------------------------------------------------------------------
         -- extman.lua
@@ -126,6 +127,7 @@ Installation sous Windows
         ftp = require "socket.ftp";
         tp = require "socket.tp";
         lfs = require "lfs";
+        require "luasql.sqlite3";
 
         -- -------------------------------------------------------------------------------------------------------
         -- extman.lua
@@ -246,7 +248,12 @@ Si on corrige en dur le port dans le fichier ``extSciTE/nodeSciTE/nodeSciTE.js``
 SciTE
 =============================
 
-Liste des options : http://www.scintilla.org/SciTEDoc.html
+
+
+liens utiles :
+
+    - http://www.scintilla.org/SciTEDoc.html
+    - http://www.cloudconnected.fr/2005/11/11/scite-l-editeur-indispensable/
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
 
@@ -254,8 +261,8 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     buffers=30
     save.session=1
     check.if.already.open=1
-    open.dialog.in.file.directory =1
-    find.replace.advanced =1
+    open.dialog.in.file.directory=1
+    find.replace.advanced=1
     # code.page=65001
     # output.code.page=65001
     properties.directory.enable=1
@@ -269,6 +276,15 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     tabsize=4
     indent.size=4
     use.tabs=0
+    
+    # The load.on.activate property causes SciTE to check whether the current file has been updated by another process whenever it is activated. This is useful when another editor such as a WYSIWYG HTML editor, is being used in conjunction with SciTE.
+    # When both this and load.on.activate are set to 1, SciTE will ask if you really want to reload the modified file, giving you the chance to keep the file as it is. By default this property is disabled, causing SciTE to reload the file without bothering you. 
+    load.on.activate=1
+    are.you.sure.on.reload=1
+    
+    # http://www.cloudconnected.fr/2005/11/11/scite-l-editeur-indispensable/
+    # Par défaut, les touches Home et End déplacent le curseur au début et à la fin de la ligne logique. Pour changer se comportement afin qu’elles déplacent le curseur sur la ligne visuelle, c’est la propriété :
+    wrap.aware.home.end.keys=1
     
     if PLAT_GTK
         all.files=All Files (*)|*|Hidden Files (.*)|.*|
@@ -289,6 +305,12 @@ extSciTE/extman/scite_lua/001first.lua
 
 Indique que extSciTE est bien chargé
 
+extSciTE/extman/scite_lua/015sqlite3.lua
+--------------------------------------------
+
+fonction initialisation sqlite3 et méthodes communes.
+Utilisé par 030bookmark.lua. 
+
 extSciTE/extman/scite_lua/020execlua.lua
 --------------------------------------------
 
@@ -298,7 +320,6 @@ Utilisé par 030bookmark.lua et 040dir.lua.
 extSciTE/extman/scite_lua/030bookmark.lua
 --------------------------------------------
 
-.. note:: version alpha. Editer le fichier ``extSciTE/extman/scite_lua/030bookmark.lua`` pour ajouter/éditer/supprimer les bookmarks.
 
 CTRL+B : affiche les bookmarks dans la console SciTE :
 
@@ -306,6 +327,16 @@ CTRL+B : affiche les bookmarks dans la console SciTE :
     - code lua à exécuter ( afficher un message, fonction à lancer ... )
     
 Pour aérer les bookmark, il y a aussi possibilité d'affichers des séparateurs
+
+
+Pour définir la base de données sqlite, éditer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : :: 
+
+    # ------------------------------------------------------------------------
+    # bookmark
+    # ------------------------------------------------------------------------
+    extscite.bookmark.sqlite3=C:\Documents and Settings\myloginname\bookmark.sqlite3.db
+    
+
 
 extSciTE/extman/scite_lua/040dir.lua
 --------------------------------------------
