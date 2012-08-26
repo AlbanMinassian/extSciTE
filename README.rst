@@ -21,6 +21,9 @@ Installation sous Linux
 - ``sudo apt-get install liblua5.1-socket2``
 - ``sudo apt-get install liblua5.1-socket-dev``
 - ``sudo apt-get install lua5.1-filesystem``
+- ``sudo apt-get install lua5.1-sql-sqlite3-2``
+
+
 - Lancer la console et exécuter la commande ``lua`` : un prompt s'affiche invitant à saisir du code lua. Tester le code ``socket = require "socket";print(socket._VERSION);`` sans génèrer une erreur dans la console. 
 - ``sudo apt-get install scite``
 - Télécharger https://github.com/ami44/extSciTE.git dans ``/home/myloginname/extSciTE`` : ``cd /home/myloginname && git clone https://github.com/ami44/extSciTE.git``
@@ -305,11 +308,11 @@ extSciTE/extman/scite_lua/001first.lua
 
 Indique que extSciTE est bien chargé
 
-extSciTE/extman/scite_lua/015sqlite3.lua
+extSciTE/extman/scite_lua/015utils.lua
 --------------------------------------------
 
-fonction initialisation sqlite3 et méthodes communes.
-Utilisé par 030bookmark.lua. 
+- ``function sqlite3Rows (connection, sql_statement)`` utilisé par ``030bookmark.lua``. 
+- ``function vardump(value, depth, key)`` 
 
 extSciTE/extman/scite_lua/020execlua.lua
 --------------------------------------------
