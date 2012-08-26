@@ -49,3 +49,7 @@ install windwos :
 
     option.maxerr = +option.maxerr || 100000; ===> option.maxerr = 100000; ne fonctionne pas 
     => toujours ``Stopping (83% scanned)`` !!!
+    
+- ajoute site wbe (nodejs) pour sauvegarder bookmark sur le serveur dédié et arrếté base sqlite3    
+
+- ajouter script 999xxxxx qui ajoute entrée dans le menu contextuel
