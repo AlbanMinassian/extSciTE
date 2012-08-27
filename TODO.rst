@@ -10,7 +10,6 @@
 - configurer le port d'écoute de nodeSciTE 
 - expliquer comment démarrer nodeSciTE automatiquement au démarrage de la session
 
-
 install windows : 
 
         - BUG Si le mesage "hello extSciTE" ne s'affiche pas dans la console, c'est qu'il a peut être un pb de droit.
@@ -31,8 +30,7 @@ install windows :
             
             
 
-- quand tester démarrage de nodeSciTE depuis SciTE : afficher la liste des services disponibles : jslit, jhlint ....
-- ajouter interval pour lire résultat ( car OnKey envoie et liot résultat en même temps )
+- quand tester démarrage de nodeSciTE depuis SciTE : afficher la liste des services disponibles : jslint, jhlint ....
 - jslint : comment corriger ``maxerr`` reste bloqué a une valeur !!!! ::
 
     option.maxerr = +option.maxerr || 100000; ===> option.maxerr = 100000; ne fonctionne pas 
@@ -40,10 +38,11 @@ install windows :
     
 - ajoute site web (nodejs) pour sauvegarder bookmark sur le serveur dédié et arrêter base sqlite3    
 
-- ajouter script 999xxxxx qui ajoute entrée dans le menu contextuel
-
 - refactoriser code bookmark ( doString en execlua, [] en label ...)
 - bookmark & web : télécharger bookmark que si écart md5
 
-- rappeller comment compiler SciTE sous Linux
-- comment compiler SciTE sous WINDOWS
+- rappeller comment compiler SciTE sous Linux :: rappelelr scintilla\README + scite\README + résumé des actions
+- comment compiler SciTE sous WINDOWS :: scintilla\README + scite\README
+
+- bug interval : si pas d'activité alors OnUpdateUi n'est pas sollicité. Pour forcer cette activité :: depuis programme externe (via cron) , 
+sollicité scite avec des commandes passé depuis l'extérieur via Command line arguments  ( http://www.scintilla.org/SciTEDoc.html) ==> a teser ?????

@@ -372,6 +372,7 @@ end
 
 local idx = 10
 local shortcuts_used = {}
+function getLastSciteCommandIdx() return idx - 1; end -- ``-1``car il a été incrémenté dans ``scite_Command`` en préparation du prochain appel de  ``scite_Command``
 
 function scite_Command(tbl)
   if type(tbl) == 'string' then
