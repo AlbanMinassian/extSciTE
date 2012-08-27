@@ -3,8 +3,8 @@
 -- -------------------------------------------------------------------------------------------------------
 -- sqlite
 -- -------------------------------------------------------------------------------------------------------
-withUtils_sqlite3Rows=1;
-function sqlite3Rows (connection, sql_statement)
+withUtils_luasqlrows=1;
+function luasqlrows (connection, sql_statement)
   local cursor = assert (connection:execute (sql_statement))
   return function ()
     return cursor:fetch()
@@ -66,4 +66,4 @@ function vardump(value, depth, key)
   end
 end
 
-_ALERT('[module] utils (vardump, sqlite3Rows ... )');
+_ALERT('[module] utils (vardump, luasqlrows ... )');

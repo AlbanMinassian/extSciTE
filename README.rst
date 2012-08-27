@@ -311,7 +311,7 @@ Indique que extSciTE est bien chargé
 extSciTE/extman/scite_lua/015utils.lua
 --------------------------------------------
 
-- ``function sqlite3Rows (connection, sql_statement)`` utilisé par ``030bookmark.lua``. 
+- ``function luasqlrows (connection, sql_statement)`` utilisé par ``030bookmark.lua``. 
 - ``function vardump(value, depth, key)`` 
 
 extSciTE/extman/scite_lua/020execlua.lua

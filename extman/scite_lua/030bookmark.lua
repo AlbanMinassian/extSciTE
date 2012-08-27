@@ -14,13 +14,11 @@ function fncBookmarkFile()
     
         
         varArrayBookmark = {}
-        for id, label, FilePath, FilePathLine, doStringCode, isSep in sqlite3Rows (connSqlite3, "select id, label, FilePath, FilePathLine, doStringCode, isSep from bookmark order by ordre ") do -- cf sqlite3Rows in 015sqlite3.lua
+        for id, label, FilePath, FilePathLine, doStringCode, isSep in luasqlrows (connSqlite3, "select id, label, FilePath, FilePathLine, doStringCode, isSep from bookmark order by ordre ") do -- cf luasqlrows in 015utils.lua
         
             -- vardump({id, label, FilePath, FilePathLine, doStringCode, isSep})
         
-            -- réinitialiser TOUT row sinon c'est le bazar
             row = {}
-            
             if isSep == '1' then
                 row["sep"] = label
             else 
@@ -45,7 +43,6 @@ function fncBookmarkFile()
             , {["sep"]="ssh"}
             , {["label"]="show kimsufi login & password", ["doStringCode"] = "print 'login=ami44,mdp=123456,IP=95.64.123.456';"}
         }
-        
     end
 
     -- vardump(varArrayBookmark)

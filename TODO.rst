@@ -48,7 +48,5 @@ install windows :
 
 - ajouter script 999xxxxx qui ajoute entrée dans le menu contextuel
 
-- renomme sqlite3Rows en luasqlrows car non spécifique sqlite3
-
 - refactoriser code bookmark ( doString en execlua, [] en label ...)
 - bookmark & web : télécharger bookmark que si écart md5
