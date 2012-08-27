@@ -50,6 +50,10 @@ install windwos :
     option.maxerr = +option.maxerr || 100000; ===> option.maxerr = 100000; ne fonctionne pas 
     => toujours ``Stopping (83% scanned)`` !!!
     
-- ajoute site wbe (nodejs) pour sauvegarder bookmark sur le serveur dédié et arrếté base sqlite3    
+- ajoute site web (nodejs) pour sauvegarder bookmark sur le serveur dédié et arrêter base sqlite3    
 
 - ajouter script 999xxxxx qui ajoute entrée dans le menu contextuel
+
+- renomme sqlite3Rows en luasqlrows car non spécifique sqlite3
+
+- refactoriser code 

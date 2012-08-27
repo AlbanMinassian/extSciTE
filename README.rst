@@ -332,12 +332,32 @@ CTRL+B : affiche les bookmarks dans la console SciTE :
 Pour aérer les bookmark, il y a aussi possibilité d'affichers des séparateurs
 
 
-Pour définir la base de données sqlite, éditer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : :: 
+Bookmark & sqlite3
+....................................................................
+
+Pour créer/éditer la base  sqlite3 : télécharger l'outil sqliteStudio à cette adresse http://sqlitestudio.one.pl
+
+Avec sqliteStudio, créer une base de données dans ``C:\Documents and Settings\myloginname\bookmark.sqlite3.db`` puis créer la table ``bookmark`` avec cette commande sql ::
+
+    CREATE TABLE bookmark ( 
+            id           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+            label        TEXT    NOT NULL,
+            FilePath     TEXT    NULL,
+            FilePathLine INTEGER NOT NULL DEFAULT '1',
+            doStringCode TEXT    NULL,
+            isSep        INTEGER NOT NULL DEFAULT '0',
+            ordre        INTEGER NOT NULL
+    );
+
+Ajouter des bookmarks dans la table bookmark
+
+Pour définir la base de données sqlite3, éditer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : :: 
 
     # ------------------------------------------------------------------------
     # bookmark
     # ------------------------------------------------------------------------
     extscite.bookmark.sqlite3=C:\Documents and Settings\myloginname\bookmark.sqlite3.db
+    
     
 
 

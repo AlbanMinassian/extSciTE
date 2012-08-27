@@ -13,20 +13,15 @@ function fncBookmarkFile()
     if withSqlite3Bookmark == 1 then
     
         
-        local idx = 1;
         varArrayBookmark = {}
         for id, label, FilePath, FilePathLine, doStringCode, isSep in sqlite3Rows (connSqlite3, "select id, label, FilePath, FilePathLine, doStringCode, isSep from bookmark order by ordre ") do -- cf sqlite3Rows in 015sqlite3.lua
-
+        
+            -- vardump({id, label, FilePath, FilePathLine, doStringCode, isSep})
+        
             -- réinitialiser TOUT row sinon c'est le bazar
             row = {}
-            row["sep"] = nil;
-            row["label"] = nil;
-            row["FilePath"] = nil;
-            row["Line"] = nil;
-            row["Line"] = nil;
-            row["doStringCode"] = nil;
             
-            if isSep == 1 then
+            if isSep == '1' then
                 row["sep"] = label
             else 
                 if FilePath ~= nil then
@@ -39,11 +34,7 @@ function fncBookmarkFile()
                 end
             end
             
---~             varArrayBookmark[idx] = row;
---~             varArrayBookmark[idx] = row;
             table.insert(varArrayBookmark,row)
-            idx = idx+1;
-            row = nil
             
         end        
     else 
@@ -54,16 +45,10 @@ function fncBookmarkFile()
             , {["sep"]="ssh"}
             , {["label"]="show kimsufi login & password", ["doStringCode"] = "print 'login=ami44,mdp=123456,IP=95.64.123.456';"}
         }
+        
     end
-    
 
---~         varArrayBookmark = {
---~             {["sep"]="www - bitnami"}
---~             , {["label"]="apache/access.log", ["FilePath"] = "C:\\Program Files\\BitNami WAPPStack\\apache2\\logs\\access.log", ["Line"] = "1000000000"}
---~             , {["sep"]="ssh"}
---~             , {["label"]="show kimsufi login & password", ["doStringCode"] = "print 'login=ami44,mdp=123456,IP=95.64.123.456';"}
---~         }
-
+    -- vardump(varArrayBookmark)
     
     _ALERT('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
     _ALERT('Bookmark (Ctrl+B) ')
