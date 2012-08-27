@@ -2,6 +2,7 @@
 
 - améliorer ``01execlua.lua`` => tester CTRL, SHIFT, tester ``execlua[`` et ``]`` ...
 - tous les script scite_lua\XXyyyy.lua => accéder rapidement au code source !
+
 - nodejs : implanter timer pour lire données de node  : 
 
     - http://stackoverflow.com/questions/6118799/creating-a-timer-using-lua
@@ -11,16 +12,12 @@
 
     - https://love2d.org/wiki/Tutorial:Networking_with_UDP
     
-- tester md5 de la réponse avant d'appliquer code    
-- configurer le port d'écoute de nodeSciTE
+- tester md5 de la réponse avant d'appliquer annotations
+- configurer le port d'écoute de nodeSciTE 
 - expliquer comment démarrer nodeSciTE automatiquement au démarrage de la session
 
-- utiliser sqlite pour les bookmarks
 
-dans 030bookmark et 040dir.lua ==> tester que 020execlua.lua est chargé => si non =, alors afficher message d'erreur
-    -=> juster jaouter dans 020execlua.lua une variable globale ``withExeclua=1`` ... et tester variable si après (si ~= nil )
-    
-install windwos : 
+install windows : 
 
         - BUG Si le mesage "hello extSciTE" ne s'affiche pas dans la console, c'est qu'il a peut être un pb de droit.
             - corriger le fichier ``"C:\\Documents and Settings\\myloginname\\extSciTE\\extman\\extman.lua"`` et à la ligne 294, corriger ``tmpfile = '\\scite_temp1'`` en ``tmpfile = '"C:\\Documents and Settings\\myloginname\\scite_temp1"'``
@@ -39,9 +36,6 @@ install windwos :
             ==> NE MARCHE PAS, NECESSITE DROIT ADMINISTRATEUR ????    
             
             
-- ajouter tictactoc & lisa
-- ouvrir explorer 
-- console to buffer
 - renommer option extscite.node.xx en extscite.nodeSciTE.xx
 - quand tester démarrage de nodeSciTE depuis SciTE : afficher la liste des services disponibles : jslit, jhlint ....
 - ajouter interval pour lire résultat ( car OnKey envoie et liot résultat en même temps )
@@ -56,4 +50,5 @@ install windwos :
 
 - renomme sqlite3Rows en luasqlrows car non spécifique sqlite3
 
-- refactoriser code 
+- refactoriser code bookmark ( doString en execlua, [] en label ...)
+- bookmark & web : télécharger bookmark que si écart md5

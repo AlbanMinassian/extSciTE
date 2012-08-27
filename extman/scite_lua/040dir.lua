@@ -90,11 +90,18 @@ function printListFileInDir()
     printListFileInDirCommun( props['FileDir'] )
 end
 
-idx =  31
-props['command.name.'..idx..'.*'] ="Dir : liste des fichiers dans le répertoire courant"
-props['command.'..idx..'.*'] ="printListFileInDir"
-props['command.subsystem.'..idx..'.*'] ="3"
-props['command.mode.'..idx..'.*'] ="savebefore:no"
-props['command.shortcut.'..idx..'.*'] ="Ctrl+Shift+O"
+if (withExeclua == 1) then -- tester présence de 020execlua.lua
 
-_ALERT('[module] dir, Ctrl+Shift+O')
+    idx =  31
+    props['command.name.'..idx..'.*'] ="Dir : liste des fichiers dans le répertoire courant"
+    props['command.'..idx..'.*'] ="printListFileInDir"
+    props['command.subsystem.'..idx..'.*'] ="3"
+    props['command.mode.'..idx..'.*'] ="savebefore:no"
+    props['command.shortcut.'..idx..'.*'] ="Ctrl+Shift+O"
+
+    _ALERT('[module] List dir, Ctrl+Shift+O')
+
+        
+else 
+    _ALERT('[FAIL] List dir, 020execlua.lua not load' )
+end

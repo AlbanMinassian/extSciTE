@@ -81,32 +81,37 @@ function fncBookmarkFile()
 
 end
 
+if (withExeclua == 1) then -- tester présence de 020execlua.lua
 
-withSqlite3Bookmark=0
-bookmarkSqlite3 = scite_GetProp('extscite.bookmark.sqlite3') -- fichier sqlite3 à utiliser
-if bookmarkSqlite3 ~= nil then 
+    withSqlite3Bookmark=0
+    bookmarkSqlite3 = scite_GetProp('extscite.bookmark.sqlite3') -- fichier sqlite3 à utiliser
+    if bookmarkSqlite3 ~= nil then 
 
-    local f=io.open(bookmarkSqlite3,"r")
-    if f~=nil then 
-        io.close(f) 
-        withSqlite3Bookmark=1
-        envSqlite3 = luasql.sqlite3() -- 
-        connSqlite3 = envSqlite3:connect(bookmarkSqlite3)
+        local f=io.open(bookmarkSqlite3,"r")
+        if f~=nil then 
+            io.close(f) 
+            withSqlite3Bookmark=1
+            envSqlite3 = luasql.sqlite3() -- 
+            connSqlite3 = envSqlite3:connect(bookmarkSqlite3)
+        else 
+            print('> erruer lecture database '..bookmarkSqlite3)
+        end
     else 
-        print('> erruer lecture database '..bookmarkSqlite3)
+        bookmarkSqlite3 = ' (no bookmark database ``extscite.bookmark.sqlite3`` define)';
     end
+
+
+
+    idx =  30
+    props['command.name.'..idx..'.*'] ="my Bookmark"
+    props['command.'..idx..'.*'] ="fncBookmarkFile"
+    props['command.subsystem.'..idx..'.*'] ="3"
+    props['command.mode.'..idx..'.*'] ="savebefore:no"
+    props['command.shortcut.'..idx..'.*'] ="Ctrl+B"
+
+    _ALERT('[module] Bookmark, Ctrl+B ' .. bookmarkSqlite3 )
+    
 else 
-    bookmarkSqlite3 = ' (no bookmark database ``extscite.bookmark.sqlite3`` define)';
+    _ALERT('[FAIL] Bookmark, 020execlua.lua not load' )
 end
-
-
-
-idx =  30
-props['command.name.'..idx..'.*'] ="my Bookmark"
-props['command.'..idx..'.*'] ="fncBookmarkFile"
-props['command.subsystem.'..idx..'.*'] ="3"
-props['command.mode.'..idx..'.*'] ="savebefore:no"
-props['command.shortcut.'..idx..'.*'] ="Ctrl+B"
-
-_ALERT('[module] Bookmark, Ctrl+B ' .. bookmarkSqlite3 )
 

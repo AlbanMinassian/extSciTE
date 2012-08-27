@@ -42,3 +42,4 @@ scite_OnDoubleClick(function()
 end)
 
 _ALERT('[module] execlua');
+withExeclua=1;
