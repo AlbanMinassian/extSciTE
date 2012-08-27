@@ -66,4 +66,4 @@ function vardump(value, depth, key)
   end
 end
 
-_ALERT('-- utils (vardump, sqlite3Rows ... )');
+_ALERT('[module] utils (vardump, sqlite3Rows ... )');
