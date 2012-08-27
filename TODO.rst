@@ -36,7 +36,7 @@ install windows :
             ==> NE MARCHE PAS, NECESSITE DROIT ADMINISTRATEUR ????    
             
             
-- renommer option extscite.node.xx en extscite.nodeSciTE.xx
+
 - quand tester démarrage de nodeSciTE depuis SciTE : afficher la liste des services disponibles : jslit, jhlint ....
 - ajouter interval pour lire résultat ( car OnKey envoie et liot résultat en même temps )
 - jslint : comment corriger ``maxerr`` reste bloqué a une valeur !!!! ::

@@ -244,8 +244,8 @@ Si on corrige en dur le port dans le fichier ``extSciTE/nodeSciTE/nodeSciTE.js``
     # ------------------------------------------------------------------------
     # nodeSciTE
     # ------------------------------------------------------------------------
-    extscite.node.host=http://127.0.0.1
-    extscite.node.port=9999
+    extscite.nodeSciTE.host=http://127.0.0.1
+    extscite.nodeSciTE.port=9999
 
 
 SciTE

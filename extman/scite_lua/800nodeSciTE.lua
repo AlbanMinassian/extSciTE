@@ -8,12 +8,12 @@
 -- -------------------------------------------------------------------------------------------------------
 -- conf serveur nodejs
 -- note : ajouter dans SciTEUser.properties : 
---    extscite.node.host=127.0.0.1
---    extscite.node.port=3891
+--    extscite.nodeSciTE.host=127.0.0.1
+--    extscite.nodeSciTE.port=3891
 -- -------------------------------------------------------------------------------------------------------
-nodeHost = scite_GetProp('extscite.node.host') -- host du serveur nodejs. Ne pas écrire "local nodeHost = ", nodeHost doit être global
+nodeHost = scite_GetProp('extscite.nodeSciTE.host') -- host du serveur nodejs. Ne pas écrire "local nodeHost = ", nodeHost doit être global
 if nodeHost == nil then nodeHost = 'http://127.0.0.1'; end
-nodePort = scite_GetProp('extscite.node.port') -- port du serveur nodejs. Ne pas écrire "local nodePort = ", nodePort doit être global
+nodePort = scite_GetProp('extscite.nodeSciTE.port') -- port du serveur nodejs. Ne pas écrire "local nodePort = ", nodePort doit être global
 if nodePort == nil then nodePort = '3891'; end
 nodeURL = nodeHost..':'..nodePort;
 
