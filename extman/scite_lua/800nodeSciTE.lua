@@ -207,18 +207,18 @@ end)
 -- ---------------------------------------------------------------------------------------- 
 -- scite_OnKey 
 -- ---------------------------------------------------------------------------------------- 
-scite_OnKey(function(argKey)
-    if ( withNodeSciTE == 1 ) then 
+--~ scite_OnKey(function(argKey)
+--~     if ( withNodeSciTE == 1 ) then 
 --~         if ( -- car scite_OnChar ne réagit pour ces caractères
 --~             argKey == 8 -- touche ``backspace``
 --~             or argKey == 46 -- touche ``supprimer``
 --~         ) then 
-            SendToNodejs(); 
+--~             SendToNodejs()
 --~         end
         -- lire si résultat quoi qu'il arrive
-        GetFromNodejs(); 
-    end
-end)
+--~         GetFromNodejs(); 
+--~     end
+--~ end)
 
 
 -- ---------------------------------------------------------------------------------------- 
@@ -231,5 +231,28 @@ end)
 --~             GetFromNodejs(); 
 --~     end;
 --~ end)
+
+-- ---------------------------------------------------------------------------------------- 
+-- scite_OnUpdateUI
+-- Si on ne met pas de protection içi, on rentre très vite dans une boucle infini avec OnUpdateUI 
+-- en l'absence d'interval intégré dans SciTE je vais ruser en codant un faux interval à l'aide de os.clock() tant qu'il y a de l'activité ;-) 
+-- envoyer le code entier toutes les secondes pour analyse 
+-- ---------------------------------------------------------------------------------------- 
+previousosclock = math.ceil (os.clock()) -- Return CPU time since Lua started in seconds. Exemple ``1.23`` = ``1 second + 230 millisecons``
+scite_OnUpdateUI(function() -- function system
+    
+    if ( withNodeSciTE == 1 ) then 
+    
+        -- toutes les secondes environ tant qu'il y a de l'activité
+        if ( math.ceil (os.clock()) ~= previousosclock ) then
+            previousosclock = math.ceil (os.clock());
+            -- envoyer le buffer à analyser
+            SendToNodejs(); 
+            -- lire si résultat quoi qu'il arrive
+            GetFromNodejs(); 
+        end
+        
+    end
+end)
 
 
