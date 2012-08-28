@@ -44,5 +44,7 @@ install windows :
 - rappeller comment compiler SciTE sous Linux :: rappelelr scintilla\README + scite\README + résumé des actions
 - comment compiler SciTE sous WINDOWS :: scintilla\README + scite\README
 
-- bug interval : si pas d'activité alors OnUpdateUi n'est pas sollicité. Pour forcer cette activité :: depuis programme externe (via cron) , 
+- interval : si pas d'activité alors OnUpdateUi n'est pas sollicité. Pour forcer cette activité :: depuis programme externe (via cron) , 
 sollicité scite avec des commandes passé depuis l'extérieur via Command line arguments  ( http://www.scintilla.org/SciTEDoc.html) ==> a teser ?????
+
+- utiliser lua namespace
