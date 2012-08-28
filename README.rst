@@ -257,6 +257,7 @@ liens utiles :
 
     - http://www.scintilla.org/SciTEDoc.html
     - http://www.cloudconnected.fr/2005/11/11/scite-l-editeur-indispensable/
+    - http://www.distasis.com/cpp/scitetip.htm
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
 
@@ -365,6 +366,11 @@ extSciTE/extman/scite_lua/040dir.lua
 --------------------------------------------
 
 CTRL+SHIFT+O : affiche dans la console SciTE le contenu du répertoire du fichier courant.
+
+extSciTE/extman/scite_lua/043fileinfo.lua
+--------------------------------------------
+
+CTRL+I : affiche dans la console SciTE les infos du fichiers pour copier/coller
 
 extSciTE/extman/scite_lua/52outputToEditor.lua
 --------------------------------------------
