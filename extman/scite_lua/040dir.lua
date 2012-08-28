@@ -50,7 +50,7 @@ function printListFileInDirCommun(argFileDir)
     _ALERT( ""..cmdLs .. " \""..argFileDir .. "\"")
     _ALERT("--------------------------------------------------------------------------------")
 
-    -- Afficher les répertoire en premier
+    -- Afficher les répertoires en premier
     local path = argFileDir
     for i,name in sortedir(path) do
         if ( name ~= "." ) then
