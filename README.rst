@@ -294,6 +294,11 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
         all.files=All Files (*)|*|Hidden Files (.*)|.*|
     open.filter=\
     $(all.files)
+    
+    # charger le fichier markdown.properties
+    # https://groups.google.com/forum/?fromgroups=#!topic/scite-interest/MZFRd161I6Y
+    # https://github.com/vadmium/etc/blob/master/scite/markdown.properties
+    import markdown
 
 
 
