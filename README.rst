@@ -330,7 +330,7 @@ extSciTE/extman/scite_lua/030bookmark.lua
 --------------------------------------------
 
 
-CTRL+B : affiche les bookmarks dans la console SciTE :
+CTRL+b : affiche les bookmarks dans la console SciTE :
 
     - fichiers préférés ( on peut même définir la ligne à afficher : utile pour descendre à la dernière ligne du fichier apache2/access.log par exemple : initialiser alors à 10000000000 )
     - code lua à exécuter ( afficher un message, fonction à lancer ... )
@@ -370,12 +370,12 @@ Pour définir la base de données sqlite3, éditer ``SciTEUser.properties`` (men
 extSciTE/extman/scite_lua/040dir.lua
 --------------------------------------------
 
-CTRL+SHIFT+O : affiche dans la console SciTE le contenu du répertoire du fichier courant.
+CTRL+SHIFT+o : affiche dans la console SciTE le contenu du répertoire du fichier courant.
 
 extSciTE/extman/scite_lua/043fileinfo.lua
 --------------------------------------------
 
-CTRL+I : affiche dans la console SciTE les infos du fichiers pour copier/coller
+CTRL+i : affiche dans la console SciTE les infos du fichiers pour copier/coller
 
 extSciTE/extman/scite_lua/52outputToEditor.lua
 --------------------------------------------
