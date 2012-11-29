@@ -20,7 +20,7 @@ function copyOutputToNewBuffer()
         tmpfile = default_path..'/console.txt'
     else
         default_path = props['SciteDefaultHome']
-        tmpfile = default_path..'\console.txt'
+        tmpfile = default_path..'\\console.txt'
     end
     
     local f = assert(io.open(tmpfile, "w")); -- créer fichier si  n'existe pas
