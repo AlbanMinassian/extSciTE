@@ -144,7 +144,13 @@ Installation sous Windows
     .. image:: https://github.com/ami44/extSciTE/raw/master/assets/console.png
         :alt: chargement des modules extSciTE
         :align: center
-        
+   
+    Si la console SciTE indique des problèmes avec lua, la solution radicale est la suivante :
+
+        - Copier tous les fichiers du répertoire ``C:\PathToLua\clibs\*`` dans ``wscite``.
+        - Copier le répertoire de ``C:\PathToLua\lua`` dans ``wscite``.
+        - Redémarrer SciTE
+
     
 - installer/démarrer nodeSciTE (cf ci-dessous) 
 
