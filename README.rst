@@ -261,9 +261,12 @@ SciTE
 
 liens utiles :
 
-    - http://www.scintilla.org/SciTEDoc.html
+    - http://ensiwiki.ensimag.fr/index.php/SciTE
+    - http://ensiwiki.ensimag.fr/index.php/Configuration_De_SciTE
     - http://www.cloudconnected.fr/2005/11/11/scite-l-editeur-indispensable/
     - http://www.distasis.com/cpp/scitetip.htm
+    - http://www.scintilla.org/SciTEDoc.html
+    - https://code.google.com/p/scite-files/w/list
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
 
@@ -306,7 +309,9 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     # https://github.com/vadmium/etc/blob/master/scite/markdown.properties
     import markdown
 
-
+Todo : 
+    
+    - tester scintillua ( http://foicica.com/scintillua/download, http://foicica.com/scintillua/api/lexer.html#Styling.Tokens )
 
 
 Modules extSciTE
@@ -341,7 +346,9 @@ CTRL+b : affiche les bookmarks dans la console SciTE :
     - fichiers préférés ( on peut même définir la ligne à afficher : utile pour descendre à la dernière ligne du fichier apache2/access.log par exemple : initialiser alors à 10000000000 )
     - code lua à exécuter ( afficher un message, fonction à lancer ... )
     
-Pour aérer les bookmark, il y a aussi possibilité d'affichers des séparateurs
+Pour aérer les bookmark, il y a aussi possibilité d'affichers des séparateurs.
+
+Rappel : CTRL+B replace le comportement CTRL+B (Expand abbreviation) par défaut de Scite.
 
 
 Bookmark & sqlite3
