@@ -267,6 +267,7 @@ liens utiles :
     - http://www.distasis.com/cpp/scitetip.htm
     - http://www.scintilla.org/SciTEDoc.html
     - https://code.google.com/p/scite-files/w/list
+    - http://pgl.yoyo.org/scite/bits/SciTEGlobal.properties
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
 
@@ -330,6 +331,8 @@ extSciTE/extman/scite_lua/015utils.lua
 
 - ``function luasqlrows (connection, sql_statement)`` utilisé par ``030bookmark.lua``. 
 - ``function vardump(value, depth, key)`` 
+- @todo : notify-send ( win : http://rodnic.net/notify-send/, linux : sudo apt-get install libnotify-bin )
+
 
 extSciTE/extman/scite_lua/020execlua.lua
 --------------------------------------------
