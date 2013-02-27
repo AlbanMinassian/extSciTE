@@ -84,6 +84,7 @@ Installation sous Windows
 --------------------------------------------
 
 - Installer luaforwindows : http://code.google.com/p/luaforwindows/
+- Installer tree (dans le %PATH%) : http://gnuwin32.sourceforge.net/packages/tree.htm 
 - Lancer la console et exécuter la commande ``lua`` : un prompt s'affiche invitant à saisir du code lua. Tester le code ``socket = require "socket";print(socket._VERSION);`` sans génèrer une erreur dans la console. Si erreur alors corriger les variables d'environnement :
 
     - Windows XP : Démarrer --> Panneau de configuration --> Système --> Avancé --> Variables d'environnement --> Variables système
