@@ -311,6 +311,22 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     # https://github.com/vadmium/etc/blob/master/scite/markdown.properties
     import markdown
 
+    # Status Bar
+    # $(StatusMsg) est utilisé par les modules pour afficher des alertes diverses ( props["StatusMsg"]='Mon message'; )
+    # impérativement maintenir $(LineNumber) et $(ColumnNumber) dans statusbar.text.1 pour aider à la mise à jour du texte dans $(StatusMsg)
+    statusbar.visible=1
+    statusbar.number=1
+    statusbar.text.1=li=$(LineNumber) co=$(ColumnNumber) $(StatusMsg)
+
+    # seul window autorise statusbar.number > 1 (cliquer sur le status pour passer d'un texte à l'autre)
+    #~ statusbar.number=4
+    #~ statusbar.text.1=li=$(LineNumber) co=$(ColumnNumber) $(OverType) ($(EOLMode)) $(FileAttr)
+    #~ statusbar.text.2=$(BufferLength) chars in $(NbOfLines) lines. Sel: $(SelLength) chars.
+    #~ statusbar.text.3=Now is: Date=$(CurrentDate) Time=$(CurrentTime)
+    #~ statusbar.text.4=$(FileNameExt) : $(FileDate) - $(FileTime) | $(FileAttr)
+
+
+
 Todo : 
     
     - tester scintillua ( http://foicica.com/scintillua/download, http://foicica.com/scintillua/api/lexer.html#Styling.Tokens )
