@@ -404,7 +404,7 @@ Usage depuis le module bookmark :
 extSciTE/extman/scite_lua/042project.lua (tree)
 -------------------------------------------------------------
 
-Affiche les dossiers présent depuis un répertoire sous forme d'arborescence
+Affiche les dossiers et fichiers présent depuis un répertoire sous forme d'arborescence. Nécessite l'utilitaire ``tree`` dans le path (installé par défaut sous linux, à installer sous windows : http://gnuwin32.sourceforge.net/packages/tree.htm).
 
 .. image:: https://github.com/ami44/extSciTE/raw/master/assets/tree.png
     :alt: affichage tree dans la console
@@ -415,7 +415,7 @@ Usage depuis un fichier ouvert dans SciTE : Ctrl+Shift+T
 Depuis le module bookmark : 
 
     Créer un bookmark (cf section 030bookmark.lua ci-dessus) et 
-    dans la colonne ``doStringCode`` appeller la fonction ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a')`` (-a == fichier hidden, cf options de tree http://www.computerhope.com/unix/tree.htm )
+    dans la colonne ``doStringCode`` appeller la fonction ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a')`` (-a == fichier hidden, cf options de tree http://www.computerhope.com/unix/tree.htm ou http://linux.die.net/man/1/tree )
 
 extSciTE/extman/scite_lua/043fileinfo.lua
 --------------------------------------------
