@@ -134,7 +134,6 @@ function openFileOrDirectory(argFileOrDirectory)
 
 end
 
-_ALERT('[module] project (tree)')
 
 if (withExeclua ~= 1) then -- tester présence de 020execlua.lua => execlua()
     _ALERT('[FAIL] List dir, 020execlua.lua not load' )
@@ -144,4 +143,17 @@ if (withDir ~= 1) then -- tester présence de 040dir.lua => printListFileInDirCo
     _ALERT('[FAIL] List dir, 040dir.lua not load' )
 end
 
+function printTreeFromFile()
+    -- printTree(props['FileDir'], '-a')
+    printTree(props['FileDir'], '')
+end
 
+idx =  32
+props['command.name.'..idx..'.*'] ="Tree : liste des fichiers et répertoires depuis répertoire du fichier courant"
+props['command.'..idx..'.*'] ="printTreeFromFile"
+props['command.subsystem.'..idx..'.*'] ="3"
+props['command.mode.'..idx..'.*'] ="savebefore:no"
+props['command.shortcut.'..idx..'.*'] ="Ctrl+Shift+T"
+_ALERT('[module] tree, Ctrl+Shift+T)')
+
+withDir=1;
