@@ -270,6 +270,7 @@ liens utiles :
     - https://code.google.com/p/scite-files/w/list
     - http://pgl.yoyo.org/scite/bits/SciTEGlobal.properties
     - http://lua-users.org/wiki/FindPage (chercher ``scite``)
+    - http://www.scintilla.org/PaneAPI.html (api scintilla)
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
 
