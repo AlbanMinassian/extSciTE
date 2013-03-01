@@ -387,20 +387,31 @@ Pour définir la base de données sqlite3, éditer ``SciTEUser.properties`` (men
 extSciTE/extman/scite_lua/040dir.lua
 --------------------------------------------
 
-CTRL+SHIFT+o : affiche dans la console SciTE le contenu du répertoire du fichier courant.
+Affiche dans la console SciTE tous les fichiers depuis le répertoire du fichier courant.
 
-extSciTE/extman/scite_lua/042project.lua
---------------------------------------------
 
-Ce module contient la fonction lua ``printTree(directory, options)``
+.. image:: https://github.com/ami44/extSciTE/raw/master/assets/dir.png
+    :alt: affichage tree dans la console
+    :align: center
 
-Pour utiliser ce module, créer un bookmark (cf section 030bookmark.lua ci-dessus).
-Dans la colonne ``doStringCode`` du bookmark : ajouter ce code lua qui ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a')`` (-a == fichier hidden, cf options de tree http://www.computerhope.com/unix/tree.htm )
+- Usage depuis un fichier ouvert dans SciTE :  ``CTRL+SHIFT+o``
+- Usage depuis le module bookmark : 
+    Créer un bookmark (cf section 030bookmark.lua ci-dessus) et 
+    dans la colonne ``doStringCode`` appeller la fonction ``printListFileInDirCommun('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')``
 
-    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/tree.png
-        :alt: affichage tree dans la console
-        :align: center
+extSciTE/extman/scite_lua/042project.lua (tree)
+-------------------------------------------------------------
 
+Ce module contient la fonction lua ``printTree(directory, options)`` qui  affiche les dossiers présent depuis un répertoire sous forme d'arborescence
+
+.. image:: https://github.com/ami44/extSciTE/raw/master/assets/tree.png
+    :alt: affichage tree dans la console
+    :align: center
+
+- Usage depuis un fichier ouvert dans SciTE : ``Ctrl+Shift+T``
+- Usage depuis le module bookmark : 
+    Créer un bookmark (cf section 030bookmark.lua ci-dessus) et 
+    dans la colonne ``doStringCode`` appeller la fonction ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a')`` (-a == fichier hidden, cf options de tree http://www.computerhope.com/unix/tree.htm )
 
 extSciTE/extman/scite_lua/043fileinfo.lua
 --------------------------------------------
