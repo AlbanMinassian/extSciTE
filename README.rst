@@ -391,25 +391,29 @@ Affiche dans la console SciTE tous les fichiers depuis le répertoire du fichier
 
 
 .. image:: https://github.com/ami44/extSciTE/raw/master/assets/dir.png
-    :alt: affichage tree dans la console
+    :alt: affichage dir dans la console
     :align: center
 
-- Usage depuis un fichier ouvert dans SciTE :  ``CTRL+SHIFT+o``
-- Usage depuis le module bookmark : 
+Usage depuis un fichier ouvert dans SciTE : CTRL+SHIFT+o
+
+Usage depuis le module bookmark : 
+
     Créer un bookmark (cf section 030bookmark.lua ci-dessus) et 
     dans la colonne ``doStringCode`` appeller la fonction ``printListFileInDirCommun('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')``
 
 extSciTE/extman/scite_lua/042project.lua (tree)
 -------------------------------------------------------------
 
-Ce module contient la fonction lua ``printTree(directory, options)`` qui  affiche les dossiers présent depuis un répertoire sous forme d'arborescence
+Affiche les dossiers présent depuis un répertoire sous forme d'arborescence
 
 .. image:: https://github.com/ami44/extSciTE/raw/master/assets/tree.png
     :alt: affichage tree dans la console
     :align: center
 
-- Usage depuis un fichier ouvert dans SciTE : ``Ctrl+Shift+T``
-- Usage depuis le module bookmark : 
+Usage depuis un fichier ouvert dans SciTE : Ctrl+Shift+T
+
+Depuis le module bookmark : 
+
     Créer un bookmark (cf section 030bookmark.lua ci-dessus) et 
     dans la colonne ``doStringCode`` appeller la fonction ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a')`` (-a == fichier hidden, cf options de tree http://www.computerhope.com/unix/tree.htm )
 
@@ -418,10 +422,15 @@ extSciTE/extman/scite_lua/043fileinfo.lua
 
 CTRL+i : affiche dans la console SciTE les infos du fichiers pour copier/coller
 
+.. image:: https://github.com/ami44/extSciTE/raw/master/assets/fileinfo.png
+    :alt: affichage info dans la console
+    :align: center
+
+
 extSciTE/extman/scite_lua/52outputToEditor.lua
 --------------------------------------------
 
-CTRL+7 : copier le contenu de la console dans un fichier ``console.txt`` et l'ouvre tout de suite dans SciTE.
+CTRL+7 : copier le contenu de la console dans un fichier ``console.txt`` et ouvrir ce fichier dans SciTE.
 
 extSciTE/extman/scite_lua/53openexplorer.lua
 --------------------------------------------
@@ -433,10 +442,18 @@ extSciTE/extman/scite_lua/100tictacto.lua
 
 CTRL+8 : A utiliser avec font monospace (CTRL+F11)
 
+.. image:: https://github.com/ami44/extSciTE/raw/master/assets/tictactoe.png
+    :alt: jouer avec tictactoe
+    :align: center
+
+source : http://lua-users.org/wiki/SciteTicTacToe
+
 extSciTE/extman/scite_lua/101eliza.lua
 --------------------------------------------
 
 CTRL+9 : crazy elisa
+
+source : http://lua-users.org/wiki/SciteElizaClassic
 
 
 extSciTE/extman/scite_lua/800node.lua
