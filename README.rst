@@ -392,10 +392,14 @@ CTRL+SHIFT+o : affiche dans la console SciTE le contenu du répertoire du fichie
 extSciTE/extman/scite_lua/042project.lua
 --------------------------------------------
 
-Ce module continet la fonction lua ``printTree(directory, options)``
+Ce module contient la fonction lua ``printTree(directory, options)``
 
 Pour utiliser ce module, créer un bookmark (cf section 030bookmark.lua ci-dessus).
 Dans la colonne ``doStringCode`` du bookmark : ajouter ce code lua qui ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a')`` (-a == fichier hidden, cf options de tree http://www.computerhope.com/unix/tree.htm )
+
+    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/tree.png
+        :alt: affichage tree dans la console
+        :align: center
 
 
 extSciTE/extman/scite_lua/043fileinfo.lua
