@@ -39,8 +39,9 @@ function sortedir(dir)
      table.sort(entries) -- sort method
      return iter, entries, 0
 end
+
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
--- afficher
+-- afficher les fichiers du répertoire
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function printListFileInDirCommun(argFileDir)
     -- lfs.dir(path) <-- retourne la liste des fichiers et répertoire NON trié
@@ -63,7 +64,8 @@ function printListFileInDirCommun(argFileDir)
                     f = string.gsub(f, "\\", "\\\\")
                 end       
     
-                stringOutput = ' [ ' .. name..' ] '..string.rep(' ',500)..' '..'execlua[printListFileInDirCommun("'..f..'")]'
+                -- OLD STYLE : stringOutput = ' [ ' .. name..' ] '..string.rep(' ',500)..' '..'execlua[printListFileInDirCommun("'..f..'")]'
+                stringOutput = '|-- [' .. name..'] '..string.rep(' ',500)..' '..'execlua[openFileOrDirectory("'..f..'")]'
                 _ALERT(stringOutput)
             end
         end
@@ -79,7 +81,16 @@ function printListFileInDirCommun(argFileDir)
             if string.sub(name, -4) == '.pyc' then -- ne pas afficher fichier pyc
                 -- pass
             else
-                stringOutput = ' ' .. name..string.rep(' ',500)..' File "'..path..osSeparator..name..'", line 1: '
+                -- OLD STYLE : stringOutput = ' ' .. name..string.rep(' ',500)..' File "'..path..osSeparator..name..'", line 1: '
+
+
+                -- SI ( windows ET directory ) ALORS ( \ en \\ ) CAR le path sera inséré dans une chaine string pour être exécuté par execlua
+                f = path..osSeparator..name
+                if (props['PLAT_WIN']=='1') then
+                    f = string.gsub(f, "\\", "\\\\")
+                end       
+                stringOutput = '|-- /' .. name..' '..string.rep(' ',500)..' '..'execlua[openFileOrDirectory("'..f..'")]'
+                
                 _ALERT(stringOutput)
             end
         end
@@ -100,6 +111,7 @@ if (withExeclua == 1) then -- tester présence de 020execlua.lua
     props['command.shortcut.'..idx..'.*'] ="Ctrl+Shift+O"
 
     _ALERT('[module] List dir, Ctrl+Shift+O')
+    withDir=1;
 
         
 else 
