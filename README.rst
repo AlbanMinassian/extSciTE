@@ -420,7 +420,7 @@ Depuis le module bookmark :
 extSciTE/extman/scite_lua/043fileinfo.lua
 --------------------------------------------
 
-CTRL+i : affiche dans la console SciTE les infos du fichiers pour copier/coller
+CTRL+SHIFT+i : affiche dans la console SciTE les infos du fichiers pour copier/coller
 
 .. image:: https://github.com/ami44/extSciTE/raw/master/assets/fileinfo.png
     :alt: affichage info dans la console
