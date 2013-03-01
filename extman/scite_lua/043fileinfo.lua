@@ -12,7 +12,7 @@ function fileInfo()
     -- ------------------------------------------------------------------------------------------------------------------------------------------------------------------
     -- http://www.scintilla.org/SciTEDoc.html
     -- ------------------------------------------------------------------------------------------------------------------------------------------------------------------
-    -- FilePath	full path of the current file
+    -- FilePath    full path of the current file
     -- FileDir	directory of the current file without a trailing slash
     -- FileName	base name of the current file
     -- FileExt	extension of the current file
@@ -33,9 +33,9 @@ function fileInfo()
     -- AbbrevPath	full path of abbreviations file
     -- ------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-    _ALERT('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    _ALERT("--------------------------------------------------------------------------------")
     _ALERT('File[Path|Dir|NameExt|Name|Ext] & stat')
-    _ALERT('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    _ALERT("--------------------------------------------------------------------------------")
     
     _ALERT(props['FilePath'])
     _ALERT(props['FileDir'])
@@ -65,9 +65,9 @@ function fileInfo()
     
 end
 
-scite_Command('File Info|fileInfo|Ctrl+I')
+scite_Command('File Info|fileInfo|Ctrl+Shift+I')
 lastIdx=getLastSciteCommandIdx(); -- cf extman.lua, récupérer identifiant de ce raccourci
-_ALERT('[module] File Info, Ctrl+I')
+_ALERT('[module] File Info, Ctrl+Shift+I')
 
 -- ajouter dans le menu contextuel
 if (withUtils_menucontextuel==1) then  -- cf 015utils.lua
