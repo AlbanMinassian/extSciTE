@@ -269,6 +269,7 @@ liens utiles :
     - http://www.scintilla.org/SciTEDoc.html
     - https://code.google.com/p/scite-files/w/list
     - http://pgl.yoyo.org/scite/bits/SciTEGlobal.properties
+    - http://lua-users.org/wiki/FindPage (chercher ``scite``)
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
 
@@ -470,6 +471,21 @@ extSciTE/extman/scite_lua/101eliza.lua
 CTRL+9 : crazy elisa
 
 source : http://lua-users.org/wiki/SciteElizaClassic
+
+extSciTE/extman/scite_lua/103asciitable.lua
+--------------------------------------------
+
+Afficher tous les caractères spéciaux pour faciliter copier/coller
+
+Usage : Menu > Tools > ASCII table
+
+
+.. image:: https://github.com/ami44/extSciTE/raw/master/assets/asciitable.png
+    :alt: afficher ascii table
+    :align: center
+
+source : http://lua-users.org/wiki/SciteAsciiTable
+
 
 
 extSciTE/extman/scite_lua/800node.lua
