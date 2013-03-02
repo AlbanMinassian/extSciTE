@@ -28,11 +28,13 @@ scite_OnDoubleClick(function()
             if ( lineOutput ~= nil ) then
                 lineOutput = trim1(lineOutput)
                 if ( lineOutput ~= '' ) then
-                    if (string.find(lineOutput, 'execlua') ~= nil) then
-                        -- extraire le code entre ``execlua[xxxx]\n``
-                        execlua = string.match(lineOutput, "execlua.*") -- @todo revoir extraction car pour le moment nécessite execlua strictement à la fin
-                        execlua = string.sub(execlua, 9, -2) -- -2 car `]\n`
-                        dostring(execlua) -- exécuter ce code lua
+                    if (string.find(lineOutput, 'execlua%[') ~= nil) then
+                        execlua = (lineOutput:gsub("^.*execlua%[(.*)%].*$", "%1")) -- extraire le code xxxx présent dans la chaine ``....execlua[xxxx]....\n``
+                        if (execlua ~= nil) then
+                            dostring(execlua) -- exécuter ce code lua
+                        else
+                            _ALERT('pb execlua avec cette chaine : '..lineOutput)
+                        end 
                     end
                 end
             end

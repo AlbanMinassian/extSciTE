@@ -73,9 +73,19 @@ function printTree(argDirectory, argTreeOptions)
             -- pass, car répertoire de départ
         else
     
-            -- retirer ``|       |-- `` dans nom des fichiers ou répertoires (win)
-            -- retirer ``|       ├─ `` dans nom des fichiers ou répertoires (linux)
-            filename = string.gsub(treeFilename, "^[|`%s%-%├%─]*", "")
+            -- retirer `` |    `   |-- `` dans nom des fichiers ou répertoires (win)
+            -- retirer ``└  │       ├─ `` dans nom des fichiers ou répertoires (linux)
+            if (props['PLAT_WIN']=='1') then
+                filename = string.gsub(treeFilename, "^[|`%s%-]*", "")
+            else
+                -- filename = string.gsub(treeFilename, "^[%s├─└│]*", "") <== ne fonctionne pas sous linux
+                filename = treeFilename
+                filename = string.gsub(filename, "│", "");
+                filename = string.gsub(filename, "└", "");
+                filename = string.gsub(filename, "─", "");
+                filename = string.gsub(filename, "├", "");
+                filename = string.gsub(filename, "^[ ]*", "") -- %s ne fonctionne pas ! ecrirer caractère ''space" à la place ...
+            end
         
             -- retirer le nom du répertoire de départ pour alléger l'affichage
             shortFilename, number = string.gsub(treeFilename, pattern, '');
@@ -122,7 +132,6 @@ function openFileOrDirectory(argFileOrDirectory)
     -- -------------------------------------------------------------------------------------------------------------------
     -- file or dir
     -- -------------------------------------------------------------------------------------------------------------------
-    _ALERT('>>> '..argFileOrDirectory)
     local attr = lfs.attributes(argFileOrDirectory)
     if (attr ~= nil ) then
         if attr.mode ~= "directory" then -- Fichier
