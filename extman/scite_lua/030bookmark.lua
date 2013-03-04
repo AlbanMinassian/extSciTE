@@ -7,7 +7,6 @@
 --    - exécute une commande lua (cf ["doStringCode"] )
 -- -------------------------------------------------------------------------------------------------------
 
-
 function fncBookmarkFile()
 
     if withSqlite3Bookmark == 1 then
@@ -47,28 +46,55 @@ function fncBookmarkFile()
 
     -- vardump(varArrayBookmark)
     
-    _ALERT('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    _ALERT("--------------------------------------------------------------------------------")
     _ALERT('Bookmark (Ctrl+B) ')
-    _ALERT('~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~')
+    _ALERT("--------------------------------------------------------------------------------")
+    local tabLine = ''
     for j,varTable in ipairs(varArrayBookmark) do -- (ipairs)=(i)ndice (pairs)
     
+        -- Séparateur ? 
         if ( varTable["sep"] ~= nil ) then
-            stringOutput = '--[ '
-            stringOutput = stringOutput..varTable["sep"]
-            stringOutput = stringOutput..' ]--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
+            -- stringOutput = '--[ '
+            -- stringOutput = stringOutput..varTable["sep"]
+            -- stringOutput = stringOutput..' ]--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------'
+
+            stringOutput = varTable["sep"]
+            tabLine = '    ';
         else
-            if ( varTable["FilePath"] ~= nil ) then
-                varLine = 1
-                if ( varTable["Line"] ~= nil ) then
-                    varLine = varTable["Line"]
-                end
-                stringOutput = varTable["label"]..string.rep(' ',100)..' File "'..varTable["FilePath"]..'", line '..varLine..': '
-            end
-            
+        
+            -- doStringCode ? 
             -- ajouter execlua ( cf fichier 020execlua.lua)
             if ( varTable["doStringCode"] ~= nil ) then
-                stringOutput = 'run : ' .. varTable["label"]..string.rep(' ',100)..' '..'execlua['..varTable["doStringCode"]..']'
+                -- stringOutput = 'run : ' .. varTable["label"]..string.rep(' ',100)..' '..'execlua['..varTable["doStringCode"]..']'
+                stringOutput = tabLine..'|= /' .. '' .. varTable["label"]..' '..string.rep(' ',500)..' '..'execlua['..varTable["doStringCode"]..']'
+            else
+
+                -- FilePath ?
+                -- Ancien code : trop dépendant du lexer de editor (affichage en rouge ...) 
+                --  Nouveau : 
+                --    * FilePath peut contenir un fichier ou un répetoire en utilisant openFileOrDirectory
+                --    * style dir ou tree plus sympa
+                --    * plus de pb couleur
+                if ( varTable["FilePath"] ~= nil ) then
+                
+                    -- SI ( windows ET directory ) ALORS ( \ en \\ ) CAR le path sera inséré dans une chaine string pour être exécuté par execlua
+                    f = varTable["FilePath"]
+                    if (props['PLAT_WIN']=='1') then
+                        f = string.gsub(f, "\\", "\\\\")
+                    end     
+                
+                    varLine = 1
+                    if ( varTable["Line"] ~= nil ) then
+                        varLine = varTable["Line"]
+                    end
+                    
+                    -- stringOutput = varTable["label"]..string.rep(' ',100)..' File "'..varTable["FilePath"]..'", line '..varLine..': ' <=== ancienne technique
+                    stringOutput = tabLine..'|-- /' .. varTable["label"]..' '..string.rep(' ',500)..' '..'execlua[openFileOrDirectory("'..f..'", '..varLine..')]'
+                    
+                end
+                
             end
+            
         end
         
         -- afficher le bookmark
