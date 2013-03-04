@@ -44,7 +44,7 @@ function fncBookmarkFile()
         }
     end
 
-    vardump(varArrayBookmark)
+    -- vardump(varArrayBookmark)
     
     
     -- -------------------------------------------------------------------------------------------------------
