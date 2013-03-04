@@ -46,8 +46,24 @@ function fncBookmarkFile()
 
     -- vardump(varArrayBookmark)
     
+    -- -------------------------------------------------------------------------------------------------------
+    -- nouveau : definir raccourci pour éditer sqlite via interface web (adminer par exemple : http://www.adminer.org/ )
+    -- nécessite variable extscite.bookmark.navigateur & extscite.bookmark.http
+    -- -------------------------------------------------------------------------------------------------------
+    local execuaBookmark='print("--> @TODO : open sqlite editor (sqliteditor, adminer ....);-)")';
+    local bookmarkHttp = scite_GetProp('extscite.bookmark.http') -- emplacement de l'interface web pour editer données sqlite (adminer par exemple)
+    local bookmarkNavigateur = scite_GetProp('extscite.bookmark.navigateur') -- navigateur à utiliser (ie, chrome, chromium, firefox ... )
+    if (bookmarkNavigateur == nil) then bookmarkNavigateur = "firefox"; end
+    if (bookmarkHttp ~= nil) then
+        if (props['PLAT_WIN']=='1') then bookmarkHttp = string.gsub(bookmarkHttp, "&", "^&") end -- si DOS : echapper & avec ^ ( http://stackoverflow.com/questions/1327431/how-do-i-escape-ampersands-in-batch-files )
+        execuaBookmark='os.execute(\''..bookmarkNavigateur..' '..bookmarkHttp..'\')'
+    end
+    
+    -- -------------------------------------------------------------------------------------------------------
+    -- Afficher les bookmarks
+    -- -------------------------------------------------------------------------------------------------------
     _ALERT("--------------------------------------------------------------------------------")
-    _ALERT('Bookmark (Ctrl+B) ')
+    _ALERT('Bookmark (Ctrl+B) [edit]'..string.rep(' ',500)..'execlua['..execuaBookmark..']')
     _ALERT("--------------------------------------------------------------------------------")
     local tabLine = ''
     for j,varTable in ipairs(varArrayBookmark) do -- (ipairs)=(i)ndice (pairs)
