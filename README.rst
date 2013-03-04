@@ -332,6 +332,7 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
 Todo : 
     
     - tester scintillua ( http://foicica.com/scintillua/download, http://foicica.com/scintillua/api/lexer.html#Styling.Tokens )
+    - revoir 016outputcolor.lua ( http://lua-users.org/wiki/SciteColouriseDemo)
 
 
 Modules extSciTE
