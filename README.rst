@@ -399,6 +399,16 @@ Pour définir la base de données sqlite3, éditer ``SciTEUser.properties`` (men
     # ------------------------------------------------------------------------
     extscite.bookmark.sqlite3=C:\Documents and Settings\myloginname\bookmark.sqlite3.db
     
+
+Pour éditer la base de données sqlite3 via une interface web comme adminer (http://www.adminer.org/) préalablement installé sur votre poste de travail ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : :: 
+
+    # ------------------------------------------------------------------------
+    # bookmark
+    # ------------------------------------------------------------------------
+    extscite.bookmark.sqlite3=C:\Documents and Settings\myloginname\bookmark.sqlite3.db
+    extscite.bookmark.navigateur="C:\\Documents and Settings\\myloginname\\Mes Programmes\\ChromiumPortable\\ChromiumPortable.exe"
+    extscite.bookmark.http=http://127.0.0.1/adminer/?sqlite=&username=root&db=D%3A%5CUtilisateurs%5Cmyloginname%5Cbookmark.sqlite3.db&select=bookmark&modify=1&order%5B0%5D=ordre
+    
     
 
 
