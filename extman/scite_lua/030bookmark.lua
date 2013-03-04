@@ -21,13 +21,13 @@ function fncBookmarkFile()
             if isSep == '1' then
                 row["sep"] = label
             else 
-                if FilePath ~= nil then
+                if doStringCode ~= nil and string.len(doStringCode) > 0  then
+                    row["label"] = label
+                    row["doStringCode"] = doStringCode
+                else
                     row["label"] = label
                     row["FilePath"] = FilePath
                     row["Line"] = FilePathLine
-                else
-                    row["label"] = label
-                    row["doStringCode"] = doStringCode
                 end
             end
             
@@ -44,7 +44,8 @@ function fncBookmarkFile()
         }
     end
 
-    -- vardump(varArrayBookmark)
+    vardump(varArrayBookmark)
+    
     
     -- -------------------------------------------------------------------------------------------------------
     -- nouveau : definir raccourci pour éditer sqlite via interface web (adminer par exemple : http://www.adminer.org/ )
@@ -153,4 +154,3 @@ if (withExeclua == 1) then -- tester présence de 020execlua.lua
 else 
     _ALERT('[FAIL] Bookmark, 020execlua.lua not load' )
 end
-
