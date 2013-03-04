@@ -110,7 +110,7 @@ function trimEndPath(s) -- ( http://lua-users.org/wiki/StringTrim )
   return s:gsub("(.-)[\\/]*$", "%1")
 end
 
-function openFileOrDirectory(argFileOrDirectory)
+function openFileOrDirectory(argFileOrDirectory, argLine)
 
     -- -------------------------------------------------------------------------------------------------------------------
     -- argument complémentaire pour ``tree``
@@ -136,6 +136,9 @@ function openFileOrDirectory(argFileOrDirectory)
     if (attr ~= nil ) then
         if attr.mode ~= "directory" then -- Fichier
             scite.Open(argFileOrDirectory);
+            if ( argLine ~= nil ) then
+                editor:GotoLine(argLine)
+            end
         else -- Répertoire
             printListFileInDirCommun(argFileOrDirectory);
         end
