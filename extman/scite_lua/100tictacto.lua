@@ -302,6 +302,7 @@ function TicTacToe()
   scite_OnDoubleClick(HandleClick)
   scite_OnChar(HandleChar)
   scite.Open("")
+  scite.MenuCommand(450) -- set monospace char ( http://lua-users.org/wiki/SciteMakeMonospace )  
   buffer[STR.Sig] = true;
   local t = {}
   Refresh(t, ComputerStart(t))
