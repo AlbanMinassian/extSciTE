@@ -1,6 +1,23 @@
 .. -*- coding: utf-8 -
 
 - déplacer documentation dans le wiki
+
+    - cf exemple : https://github.com/hadley/devtools/wiki => necessite gollum https://github.com/github/gollum
+
+        https://github.com/mojombo/gollum-demo
+        http://killring.org/blog/2012/06/28/gollum-the-ultimate-personal-wiki/
+        http://alblue.bandlem.com/2011/05/git-tip-of-week-gollum.html
+        http://www.nomachetejuggling.com/2012/05/15/personal-wiki-using-github-and-gollum-on-os-x/
+        http://michaelchelen.net/articles/git-wiki-gollum-smeagol.html
+        https://blog.theroux.ca/ruby/Markdown-based-wiki-using-gollum/
+        http://blackbe.lt/github-wiki-sidebar-table-contents-header-footer/
+        https://github.com/dreverri/gollum-site ( Static Site Generator for Gollum Wikis )
+        https://github.com/remino/blankgollum ( A blank gollum wiki repo template for you to use )
+        https://github.com/tub78/gollum-bootstrap ( Bootstrap your repository's wiki with Gollum )
+        http://vincent.demeester.fr/2012/12/gollum-comme-wiki-personnel/
+
+
+
 - ajouter picture bookmark
 - documenter bookmark (sep, doStringCode, Filepath = File ou Dir )
 - déplacer openFileOrDirectory (de 042projet.lua) dans 015utils.lua
