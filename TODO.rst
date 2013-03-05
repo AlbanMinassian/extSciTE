@@ -1,13 +1,27 @@
 .. -*- coding: utf-8 -
 
+- déplacer documentation dans le wiki
+- ajouter picture bookmark
+- documenter bookmark (sep, doStringCode, Filepath = File ou Dir )
+- déplacer openFileOrDirectory (de 042projet.lua) dans 015utils.lua
+- doc dir et tree : indiquer qu'un clic dans output ouvre le fichier ou liste les fichiers 
+- renommer en printDir
+- quand on liste les modules au démarrage de SciTE : ``[module] xxxxxx, Ctrl+`` => ajouter execlua[openFileorDir('chemin vers le code source du module')]
+- coder exemple pour tester notify (win ou windows)
+- coder exemple pour tester status bar avec message personnalisé ( cf $(StatusMsg), props["StatusMsg"]='Mon message'; )
+- coder exemple pour coloriser output ( décommenter code de 016outputcolor.lua )
+
+-------------------------------------------------------
+
+
 - améliorer ``01execlua.lua`` => tester CTRL, SHIFT, tester ``execlua[`` et ``]`` ...
-- tous les script scite_lua\XXyyyy.lua => accéder rapidement au code source !
-- ou utiliser udp depusi nodejs pour indiquer une évolution ? : 
+- tous les scripts scite_lua\XXyyyy.lua => accéder rapidement au code source !
+- ou utiliser udp depuis nodejs pour indiquer une évolution ? : 
 
     - https://love2d.org/wiki/Tutorial:Networking_with_UDP
     
 - tester md5 de la réponse avant d'appliquer annotations
-- configurer le port d'écoute de nodeSciTE 
+
 - expliquer comment démarrer nodeSciTE automatiquement au démarrage de la session
 
 install windows : 
@@ -38,13 +52,13 @@ install windows :
     
 - ajoute site web (nodejs) pour sauvegarder bookmark sur le serveur dédié et arrêter base sqlite3    
 
-- refactoriser code bookmark ( doString en execlua, [] en label ...)
 - bookmark & web : télécharger bookmark que si écart md5
 
-- rappeller comment compiler SciTE sous Linux :: rappelelr scintilla\README + scite\README + résumé des actions
+- rappeller comment compiler SciTE sous Linux :: rappellrr scintilla\README + scite\README + résumé des actions
 - comment compiler SciTE sous WINDOWS :: scintilla\README + scite\README
 
 - interval : si pas d'activité alors OnUpdateUi n'est pas sollicité. Pour forcer cette activité :: depuis programme externe (via cron) , 
-sollicité scite avec des commandes passé depuis l'extérieur via Command line arguments  ( http://www.scintilla.org/SciTEDoc.html) ==> a teser ?????
+sollicité scite avec des commandes passé depuis l'extérieur via Command line arguments  ( http://www.scintilla.org/SciTEDoc.html) ==> a tester ?????
 
 - utiliser lua namespace
+
