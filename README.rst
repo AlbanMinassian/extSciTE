@@ -363,10 +363,13 @@ Utilisé par 030bookmark.lua et 040dir.lua.
 extSciTE/extman/scite_lua/030bookmark.lua
 --------------------------------------------
 
+.. image:: https://github.com/ami44/extSciTE/raw/master/assets/bookmark.png
+    :alt: exemple bookmarks
+    :align: center
 
 CTRL+b : affiche les bookmarks dans la console SciTE :
 
-    - fichiers préférés ( on peut même définir la ligne à afficher : utile pour descendre à la dernière ligne du fichier apache2/access.log par exemple : initialiser alors à 10000000000 )
+    - fichiers ou répertoires préférés ( on peut même définir la ligne à afficher : utile pour descendre à la dernière ligne du fichier apache2/access.log par exemple : initialiser alors à 10000000000 )
     - code lua à exécuter ( afficher un message, fonction à lancer ... )
     
 Pour aérer les bookmark, il y a aussi possibilité d'affichers des séparateurs.
