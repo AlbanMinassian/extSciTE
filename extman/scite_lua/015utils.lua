@@ -2,7 +2,7 @@
 
 -- -------------------------------------------------------------------------------------------------------
 -- menu contextuel
--- le script 999menucontextuel.lua (chargé en dernier) sera en charge d'ajouter le menu contectuel à SciTE selon les scripts lua traversé
+-- le script 999menucontextuel.lua (chargé en dernier) sera en charge d'ajouter le menu contextuel à SciTE selon les scripts lua traversés
 -- -------------------------------------------------------------------------------------------------------
 withUtils_menucontextuel=1;
 menucontextuel = {}
@@ -16,6 +16,33 @@ function luasqlrows (connection, sql_statement)
   return function ()
     return cursor:fetch()
   end
+end
+
+-- -------------------------------------------------------------------------------------------------------
+-- escapeExecluaPath
+-- SI ( windows ET directory ou file ) ALORS ( \ en \\ ) CAR le path sera inséré dans une chaine string pour être exécuté par execlua
+-- -------------------------------------------------------------------------------------------------------
+function escapeExecluaPath(argPath)
+    local path = argPath;
+    if (props['PLAT_WIN']=='1') then
+        path = string.gsub(path, "\\", "\\\\")
+    end       
+    return path
+end
+
+-- -------------------------------------------------------------------------------------------------------
+-- execluaOpenFileOrDirectory
+-- -------------------------------------------------------------------------------------------------------
+function execluaOpenFileOrDirectory(argPath)
+    return 'execlua[openFileOrDirectory("'..escapeExecluaPath(argPath)..'")]'
+end
+
+-- -------------------------------------------------------------------------------------------------------
+-- outputModuleMessage
+-- retourne chaine avec chaine ET execlua pour ouvrir et éditer le code du module
+-- -------------------------------------------------------------------------------------------------------
+function outputModuleMessage(argString, argPath)
+    return argString..string.rep(' ',500)..' '..execluaOpenFileOrDirectory(props['FilePath'])
 end
 
 -- -------------------------------------------------------------------------------------------------------
@@ -58,7 +85,7 @@ function vardump(value, depth, key)
     else
       print(spaces .."(metatable) ")
         value = mTable
-    end		
+    end  	
     for tableKey, tableValue in pairs(value) do
       vardump(tableValue, depth, tableKey)
     end
@@ -73,4 +100,4 @@ function vardump(value, depth, key)
   end
 end
 
-_ALERT('[module] utils (vardump, luasqlrows ... )');
+_ALERT(outputModuleMessage('[module] utils (vardump, luasqlrows ... )', props['FilePath']))
