@@ -1,5 +1,7 @@
 -- -*- coding: utf-8 -
 
+
+
 -- -------------------------------------------------------------------------------------------------------
 -- menu contextuel
 -- le script 999menucontextuel.lua (chargé en dernier) sera en charge d'ajouter le menu contextuel à SciTE selon les scripts lua traversés
@@ -38,11 +40,22 @@ function execluaOpenFileOrDirectory(argPath)
 end
 
 -- -------------------------------------------------------------------------------------------------------
+-- execluaPrintTree
+-- -------------------------------------------------------------------------------------------------------
+function execluaPrintTree(argPath)
+    return 'execlua[printTree("'..escapeExecluaPath(argPath)..'")]'
+end
+
+-- -------------------------------------------------------------------------------------------------------
 -- outputModuleMessage
 -- retourne chaine avec chaine ET execlua pour ouvrir et éditer le code du module
 -- -------------------------------------------------------------------------------------------------------
-function outputModuleMessage(argString, argPath)
-    return argString..string.rep(' ',500)..' '..execluaOpenFileOrDirectory(props['FilePath'])
+function outputModuleMessage(argString, argName)
+
+    local sep = '/';
+    if (props['PLAT_WIN']=='1') then  sep = '\\'  end       
+
+    return argString..string.rep(' ',500)..' '..execluaOpenFileOrDirectory(scite_GetProp('ext.lua.directory')..sep..argName)
 end
 
 -- -------------------------------------------------------------------------------------------------------
@@ -100,4 +113,7 @@ function vardump(value, depth, key)
   end
 end
 
-_ALERT(outputModuleMessage('[module] utils (vardump, luasqlrows ... )', props['FilePath']))
+_ALERT("--------------------------------------------------------------------------------")
+_ALERT('extSciTE [tree]'..string.rep(' ',500)..execluaPrintTree(scite_GetProp('ext.lua.directory')))
+_ALERT("--------------------------------------------------------------------------------")
+_ALERT(outputModuleMessage('[module] utils (vardump, luasqlrows ... )', "015utils.lua" ))
