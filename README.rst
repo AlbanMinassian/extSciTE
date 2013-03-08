@@ -388,7 +388,7 @@ Avec sqliteStudio, créer une base de données dans ``C:\Documents and Settings\
             id           INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
             label        TEXT    NOT NULL,
             FilePath     TEXT    NULL,
-            FilePathLine INTEGER NOT NULL DEFAULT '1',
+            FilePathLine INTEGER NOT NULL DEFAULT '0',
             doStringCode TEXT    NULL,
             isSep        INTEGER NOT NULL DEFAULT '0',
             ordre        INTEGER NOT NULL
