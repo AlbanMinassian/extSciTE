@@ -139,6 +139,7 @@ function openFileOrDirectory(argFileOrDirectory, argLineOrSearchString)
             if ( argLineOrSearchString ~= nil ) then
                 if (type(argLineOrSearchString) == "number") then
                     editor:GotoLine(argLineOrSearchString)
+                    editor:GrabFocus() -- set focus + renforce la stabilité de extSciTE
                 elseif (type(argLineOrSearchString) == "string") then
                     -- chercher en avant
                     local position = editor:SearchNext(--[[int flags]]0, argLineOrSearchString)
@@ -150,6 +151,7 @@ function openFileOrDirectory(argFileOrDirectory, argLineOrSearchString)
                     else
                         editor:GotoLine(editor:LineFromPosition(position))
                         editor:SetSel(position, position+ string.len(argLineOrSearchString))
+                        editor:GrabFocus() -- set focus + renforce la stabilité de extSciTE
                     end
                 else
                     _ALERT('openFileOrDirectory :: unknow type "'..type(argLineOrSearchString)..'"')
