@@ -156,6 +156,8 @@ function openFileOrDirectory(argFileOrDirectory, argLineOrSearchString)
                 else
                     _ALERT('openFileOrDirectory :: unknow type "'..type(argLineOrSearchString)..'"')
                 end
+            else
+                editor:GrabFocus() -- set focus + renforce la stabilité de extSciTE
             end
         else -- Répertoire
             printListFileInDirCommun(argFileOrDirectory);
