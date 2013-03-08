@@ -166,13 +166,14 @@ withNodeSciTE = 0;
 response, code, header = get(nodeURL);
 if (code == 200) then
 	withNodeSciTE = 1;
-    _ALERT('[module] nodeSciTE (listening '..nodeURL..')')
+    _ALERT(outputModuleMessage('[module] nodeSciTE (listening '..nodeURL..')', "800nodeSciTE.lua"))
+    
 else
 
 --~     print(response); print(code); 
     
 	withNodeSciTE = 0;
-    _ALERT('[module] nodeSciTE')
+    _ALERT(outputModuleMessage('[module] nodeSciTE', "800nodeSciTE.lua"))
     _ALERT('> le serveur nodeSciTE n\'est pas démarré')
     _ALERT('> ou n\'écoute pas à cette adresse '..nodeURL..'')
     _ALERT('> cd extSciTE/nodeSciTE')

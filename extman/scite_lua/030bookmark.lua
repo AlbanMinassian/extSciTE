@@ -134,7 +134,7 @@ if (withExeclua == 1) then -- tester présence de 020execlua.lua
             envSqlite3 = luasql.sqlite3() -- 
             connSqlite3 = envSqlite3:connect(bookmarkSqlite3)
         else 
-            print('> erruer lecture database '..bookmarkSqlite3)
+            print('> erreur lecture database '..bookmarkSqlite3)
         end
     else 
         bookmarkSqlite3 = ' (no bookmark database ``extscite.bookmark.sqlite3`` define)';
@@ -149,8 +149,8 @@ if (withExeclua == 1) then -- tester présence de 020execlua.lua
     props['command.mode.'..idx..'.*'] ="savebefore:no"
     props['command.shortcut.'..idx..'.*'] ="Ctrl+B"
 
-    _ALERT('[module] Bookmark, Ctrl+B ' .. bookmarkSqlite3 )
+    _ALERT(outputModuleMessage('[module] Bookmark, Ctrl+B, ' .. bookmarkSqlite3, "030bookmark.lua"))
     
 else 
-    _ALERT('[FAIL] Bookmark, 020execlua.lua not load' )
+    _ALERT(outputModuleMessage('[FAIL] Bookmark, 020execlua.lua not load', "030bookmark.lua"))
 end

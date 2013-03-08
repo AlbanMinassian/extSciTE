@@ -110,10 +110,11 @@ if (withExeclua == 1) then -- tester présence de 020execlua.lua
     props['command.mode.'..idx..'.*'] ="savebefore:no"
     props['command.shortcut.'..idx..'.*'] ="Ctrl+Shift+O"
 
-    _ALERT('[module] List dir, Ctrl+Shift+O')
+    _ALERT(outputModuleMessage('[module] List dir, Ctrl+Shift+O', "040dir.lua"))
     withDir=1;
 
         
 else 
-    _ALERT('[FAIL] List dir, 020execlua.lua not load' )
+
+    _ALERT(outputModuleMessage('[FAIL] List dir, 020execlua.lua not load', "040dir.lua"))
 end

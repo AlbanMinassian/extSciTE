@@ -31,4 +31,4 @@ function copyOutputToNewBuffer()
 end
 
 scite_Command('Open Console In New Buffer|copyOutputToNewBuffer|Ctrl+7')
-_ALERT('[module] Console to buffer, Ctrl+7')
+_ALERT(outputModuleMessage('[module] Console to buffer, Ctrl+7', "52outputToEditor.lua"))

@@ -3,11 +3,13 @@
 Introduction
 =============================
 
-``SciTE`` est un éditeur multiplatforme léger et hautement configurable. 
+`SciTE <http://www.scintilla.org/SciTE.html>`_ est un éditeur multiplatforme léger et hautement configurable qui fonctionne sous Linux/Win/Mac (contrairement à notepad++).
+Ma productivité acquise sous Linux est conservée quand je passe sur Windows.
 
 J'utilise ``extSciTE`` comme mémo pour réinstaller cet éditeur sur une nouvelle machine
-et rapidement ajouter quelques scripts pratiques pour un usage quotidien.
+et rapidement ajouter quelques scripts très pratiques pour un usage quotidien.
 
+``extSciTE`` a pour vocation de fonctionner avec le programme ``SciTE`` standard (à la différence du projet `scite-ru <http://scite-ru.googlecode.com>`_).
 
 extSciTE
 =============================
@@ -74,7 +76,7 @@ Installation sous Linux
         
 - Redémarrer SciTE et constater dans la console que les modules de extSciTE se chargent :
 
-    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/console.png
+    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/startup.png
         :alt: chargement des modules extSciTE
         :align: center
     
@@ -259,7 +261,6 @@ SciTE
 =============================
 
 
-
 liens utiles :
 
     - http://ensiwiki.ensimag.fr/index.php/SciTE
@@ -270,7 +271,10 @@ liens utiles :
     - https://code.google.com/p/scite-files/w/list
     - http://pgl.yoyo.org/scite/bits/SciTEGlobal.properties
     - http://lua-users.org/wiki/FindPage (chercher ``scite``)
+    - http://www.scintilla.org/ScintillaDoc.html
     - http://www.scintilla.org/PaneAPI.html (api scintilla)
+    - http://scite-ru.googlecode.com/svn/trunk/pack/tools/ (plein d'idées lua)
+    
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
 
@@ -316,30 +320,34 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     # Status Bar
     # $(StatusMsg) est utilisé par les modules pour afficher des alertes diverses ( props["StatusMsg"]='Mon message'; )
     # impérativement maintenir $(LineNumber) et $(ColumnNumber) dans statusbar.text.1 pour aider à la mise à jour du texte dans $(StatusMsg)
+    # rappel : seul window autorise statusbar.number > 1 (cliquer sur le status pour passer d'un texte à l'autre) mais pas très utile
     statusbar.visible=1
     statusbar.number=1
     statusbar.text.1=li=$(LineNumber) co=$(ColumnNumber) $(StatusMsg)
 
-    # seul window autorise statusbar.number > 1 (cliquer sur le status pour passer d'un texte à l'autre)
-    #~ statusbar.number=4
-    #~ statusbar.text.1=li=$(LineNumber) co=$(ColumnNumber) $(OverType) ($(EOLMode)) $(FileAttr)
-    #~ statusbar.text.2=$(BufferLength) chars in $(NbOfLines) lines. Sel: $(SelLength) chars.
-    #~ statusbar.text.3=Now is: Date=$(CurrentDate) Time=$(CurrentTime)
-    #~ statusbar.text.4=$(FileNameExt) : $(FileDate) - $(FileTime) | $(FileAttr)
+Editer ``cpp.properties`` (menu --> Options --> Edit properties -> Open cpp properties) : ::
 
+    # associer fichier json au lexer cpp.properties (comme les fichiers *.js)
+    file.patterns.js=*.js;*.es;*.json
 
+Facultatif : installer la police consolas pour la console : 
+
+    - télécharger la font consolas (`ici <http://www.fontpalace.com/font-download/Consolas>`_ ou `là <https://code.google.com/p/scite-ru/downloads/detail?name=Consolas.rar&can=2&q=>`_ ) . Si win et problème de droit alors copier directement dans ``C:\Windows\Fonts``.
+    - Editer le fichier ``SciTEGlobal.properties`` et corriger ``font.small=font:Verdana,size:8`` par ``font.small=font:Consolas,size:8``.
+    - Le ``$(font.small)`` sera ensuite interprété par le fichier ``others.properties``
 
 Todo : 
     
     - tester scintillua ( http://foicica.com/scintillua/download, http://foicica.com/scintillua/api/lexer.html#Styling.Tokens )
+    - implanter http://scite-ru.googlecode.com/svn/trunk/pack/tools/svn_menu.lua (et voir les autres scripts lua)
     - revoir 016outputcolor.lua ( http://lua-users.org/wiki/SciteColouriseDemo)
+    - notify-send ( win : http://rodnic.net/notify-send/, linux : sudo apt-get install libnotify-bin )
 
 
 Modules extSciTE
 =============================
 
 .. note:: pour désactiver un module : simplement renommer le fichier sans l'extension ``.lua`` pour ne plus être pris en compte. Pour le réactiver : remettre l'extension ``.lua``.
-
 
 extSciTE/extman/scite_lua/001first.lua
 --------------------------------------------
@@ -351,7 +359,6 @@ extSciTE/extman/scite_lua/015utils.lua
 
 - ``function luasqlrows (connection, sql_statement)`` utilisé par ``030bookmark.lua``. 
 - ``function vardump(value, depth, key)`` 
-- @todo : notify-send ( win : http://rodnic.net/notify-send/, linux : sudo apt-get install libnotify-bin )
 
 
 extSciTE/extman/scite_lua/020execlua.lua
@@ -447,7 +454,7 @@ Usage depuis un fichier ouvert dans SciTE : Ctrl+Shift+T
 Depuis le module bookmark : 
 
     Créer un bookmark (cf section 030bookmark.lua ci-dessus) et 
-    dans la colonne ``doStringCode`` appeller la fonction ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a')`` (-a == fichier hidden, cf options de tree http://www.computerhope.com/unix/tree.htm ou http://linux.die.net/man/1/tree )
+    dans la colonne ``doStringCode`` appeller la fonction ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm')`` ou avec des options comme ``printTree('C:\\BitNami\\wappstack-5.4.9-0\\apache2\\htdocs\\qcm', '-a -L 2')`` (-a == fichier hidden, -L 2== afficher 2 niveaux uniquement, cf options de tree http://www.computerhope.com/unix/tree.htm ou http://linux.die.net/man/1/tree )
 
 extSciTE/extman/scite_lua/043fileinfo.lua
 --------------------------------------------

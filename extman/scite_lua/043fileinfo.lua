@@ -67,7 +67,8 @@ end
 
 scite_Command('File Info|fileInfo|Ctrl+Shift+I')
 lastIdx=getLastSciteCommandIdx(); -- cf extman.lua, récupérer identifiant de ce raccourci
-_ALERT('[module] File Info, Ctrl+Shift+I')
+
+_ALERT(outputModuleMessage('[module] File Info, Ctrl+Shift+I', "043fileinfo.lua"))
 
 -- ajouter dans le menu contextuel
 if (withUtils_menucontextuel==1) then  -- cf 015utils.lua

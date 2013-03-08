@@ -52,4 +52,5 @@ props['command.name.'..idx..'.*'] ="ASCII table"
 props['command.'..idx..'.*'] ="ASCIITable"
 props['command.subsystem.'..idx..'.*'] ="3"
 props['command.mode.'..idx..'.*'] ="savebefore:no"
-_ALERT('[module] ASCII table')
+
+_ALERT(outputModuleMessage('[module] ASCII table, menu > '..props['command.name.'..idx..'.*'] , "103asciitable.lua"))

@@ -1,5 +1,22 @@
 -- -*- coding: utf-8 -
 
+
+function trimSpace(s) -- ( http://lua-users.org/wiki/StringTrim )
+  return (s:gsub("^%s*(.-)%s*$", "%1"))
+--~   return s:match "^%s*(.-)%s*$"
+--~   return s:gsub("^%s+", ""):gsub("%s+$", "")
+--~   return s:match"^%s*(.*)":match"(.-)%s*$"
+--~   return s:match'^%s*(.*%S)' or ''
+--~   return s:match'^()%s*$' and '' or s:match'^%s*(.*%S)'
+end
+
+
+--~ function trimEndPath(s) -- ( http://lua-users.org/wiki/StringTrim )
+--~   -- return (s:gsub("(.-)[\\/]*$", "%1"))
+--~   return s:gsub("(.-)[\\/]*$", "%1")
+--~ end
+
+
 -- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 -- printTree
 -- affiche la liste des fichiers du projets dans la console
@@ -59,10 +76,12 @@ function printTree(argDirectory, argTreeOptions)
     -- -------------------------------------------------------------------------------------------------------------------
     -- lancer commande tree
     -- source http://www.computerhope.com/unix/tree.htm : 
-    --   -F : Append a `/' for directories, a `=' for socket files, a `*' for executable files and a `|' for FIFO's, as per ls
+    --   -F : Append a `/' for directories, a `=' for socket files, a `*' for executable files and a `|' for FIFO's, as perls
     --   -f : Prints the full path prefix for each file.
     --   --noreport : Omits printing of the file and argDirectory report at the end of the tree listing.
     --   -n : Turn colorization off always, over-ridden by the -C option
+    --   -N : Print non-printable characters as is instead of the default carrot notation. ==> indispensable sinon problème avec le caractère space par la suite (linux)
+    --   -A : Turn on ANSI line graphics hack when printing the indentation lines.
     -- -------------------------------------------------------------------------------------------------------------------
     local i = 0;
     local cmd=treeFullPath..' "'..argDirectory..'" -F -f -n --noreport '..argTreeOptions
@@ -72,19 +91,17 @@ function printTree(argDirectory, argTreeOptions)
         if (i == 1) then
             -- pass, car répertoire de départ
         else
-    
+        
+            -- tree : caractères différents selon OS
             -- retirer `` |    `   |-- `` dans nom des fichiers ou répertoires (win)
             -- retirer ``└  │       ├─ `` dans nom des fichiers ou répertoires (linux)
             if (props['PLAT_WIN']=='1') then
                 filename = string.gsub(treeFilename, "^[|`%s%-]*", "")
             else
-                -- filename = string.gsub(treeFilename, "^[%s├─└│]*", "") <== ne fonctionne pas sous linux
+                -- filename = string.gsub(treeFilename, "^[%s│─└├]*", "") <== ne fonctionne pas sous linux
                 filename = treeFilename
-                filename = string.gsub(filename, "│", "");
-                filename = string.gsub(filename, "└", "");
-                filename = string.gsub(filename, "─", "");
-                filename = string.gsub(filename, "├", "");
-                filename = string.gsub(filename, "^[ ]*", "") -- %s ne fonctionne pas ! ecrirer caractère ''space" à la place ...
+                filename = string.gsub(filename, "[│─└├]", "");
+                filename = string.gsub(filename, "^[%s ]*", ""); -- supprime que les espaces du debut. ecrire %s et ' '
             end
         
             -- retirer le nom du répertoire de départ pour alléger l'affichage
@@ -105,10 +122,7 @@ function printTree(argDirectory, argTreeOptions)
 
 end
 
-function trimEndPath(s) -- ( http://lua-users.org/wiki/StringTrim )
---~   return (s:gsub("(.-)[\\/]*$", "%1"))
-  return s:gsub("(.-)[\\/]*$", "%1")
-end
+
 
 function openFileOrDirectory(argFileOrDirectory, argLineOrSearchString)
 
@@ -127,7 +141,8 @@ function openFileOrDirectory(argFileOrDirectory, argLineOrSearchString)
     -- -------------------------------------------------------------------------------------------------------------------
     -- Nettoyage fin de path avec ``\`` sinon pb avec lfs.attributes
     -- -------------------------------------------------------------------------------------------------------------------
-    argFileOrDirectory = trimEndPath(argFileOrDirectory) -- retirer path qui se termine par ``\`` ou ``//``
+    argFileOrDirectory = argFileOrDirectory:gsub("(.-)[\\/]*$", "%1")  -- retirer path qui se termine par ``\`` ou ``//`` -- argFileOrDirectory = trimEndPath(argFileOrDirectory) -- retirer path qui se termine par ``\`` ou ``//``
+    argFileOrDirectory = string.gsub(argFileOrDirectory, "^[%s ]*", ""); -- supprime que les espaces du debut si existe encore. ecrire %s et ' ' 
 
     -- -------------------------------------------------------------------------------------------------------------------
     -- file or dir
@@ -188,6 +203,5 @@ props['command.'..idx..'.*'] ="printTreeFromFile"
 props['command.subsystem.'..idx..'.*'] ="3"
 props['command.mode.'..idx..'.*'] ="savebefore:no"
 props['command.shortcut.'..idx..'.*'] ="Ctrl+Shift+T"
-_ALERT('[module] tree, Ctrl+Shift+T)')
-
-withDir=1;
+_ALERT(outputModuleMessage('[module] tree, Ctrl+Shift+T', "042project.lua"))
+withTree=1;

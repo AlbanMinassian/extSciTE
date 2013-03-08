@@ -310,4 +310,5 @@ end
 
 
 scite_Command('Tic Tac Toe|TicTacToe|Ctrl+8')
-_ALERT('[module] TicTacToe, Ctrl+8')
+
+_ALERT(outputModuleMessage('[module] TicTacToe, Ctrl+8', "100tictacto.lua"))

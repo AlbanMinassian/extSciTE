@@ -52,4 +52,5 @@
 --~     
 --~ end
 --~ ColourTest()
-_ALERT('[module] outputcolor (@todo, cf code)');
+
+_ALERT(outputModuleMessage('[module] outputcolor (@todo, cf code)', "016outputcolor.lua"))
