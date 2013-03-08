@@ -110,7 +110,7 @@ function trimEndPath(s) -- ( http://lua-users.org/wiki/StringTrim )
   return s:gsub("(.-)[\\/]*$", "%1")
 end
 
-function openFileOrDirectory(argFileOrDirectory, argLine)
+function openFileOrDirectory(argFileOrDirectory, argLineOrSearchString)
 
     -- -------------------------------------------------------------------------------------------------------------------
     -- argument complémentaire pour ``tree``
@@ -136,8 +136,24 @@ function openFileOrDirectory(argFileOrDirectory, argLine)
     if (attr ~= nil ) then
         if attr.mode ~= "directory" then -- Fichier
             scite.Open(argFileOrDirectory);
-            if ( argLine ~= nil ) then
-                editor:GotoLine(argLine)
+            if ( argLineOrSearchString ~= nil ) then
+                if (type(argLineOrSearchString) == "number") then
+                    editor:GotoLine(argLineOrSearchString)
+                elseif (type(argLineOrSearchString) == "string") then
+                    -- chercher en avant
+                    local position = editor:SearchNext(--[[int flags]]0, argLineOrSearchString)
+                    -- chercher en arrière si pas trouvé en avant
+                    if position == -1 then position = editor:SearchPrev(--[[int flags]]0, argLineOrSearchString) end
+                    -- si trouvé alors rendre visible sinon afficher que la chaine n'a pas été trouvé
+                    if position == -1 then 
+                        _ALERT('échec pour trouver la chaine "'..argLineOrSearchString..'"')
+                    else
+                        editor:GotoLine(editor:LineFromPosition(position))
+                        editor:SetSel(position, position+ string.len(argLineOrSearchString))
+                    end
+                else
+                    _ALERT('openFileOrDirectory :: unknow type "'..type(argLineOrSearchString)..'"')
+                end
             end
         else -- Répertoire
             printListFileInDirCommun(argFileOrDirectory);
