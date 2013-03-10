@@ -276,6 +276,7 @@ liens utiles :
     - http://scite-files.googlecode.com/svn-history/trunk/extras/SciTELua.api
     - http://www.scintilla.org/PaneAPI.html (api scintilla)
     - http://scite-ru.googlecode.com/svn/trunk/pack/tools/ (plein d'idées lua)
+    - https://groups.google.com/forum/?fromgroups#!forum/scite-interest
     
     
 
