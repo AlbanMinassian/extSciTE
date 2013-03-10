@@ -144,7 +144,7 @@ Installation sous Windows
     
 - Redémarrer SciTE et constater dans la console que les modules de extSciTE se chargent :
 
-    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/console.png
+    .. image:: https://github.com/ami44/extSciTE/raw/master/assets/startup.png
         :alt: chargement des modules extSciTE
         :align: center
    
@@ -268,12 +268,15 @@ liens utiles :
     - http://www.cloudconnected.fr/2005/11/11/scite-l-editeur-indispensable/
     - http://www.distasis.com/cpp/scitetip.htm
     - http://www.scintilla.org/SciTEDoc.html
+    - http://www.scintilla.org/SciTELua.html
     - https://code.google.com/p/scite-files/w/list
     - http://pgl.yoyo.org/scite/bits/SciTEGlobal.properties
     - http://lua-users.org/wiki/FindPage (chercher ``scite``)
     - http://www.scintilla.org/ScintillaDoc.html
+    - http://scite-files.googlecode.com/svn-history/trunk/extras/SciTELua.api
     - http://www.scintilla.org/PaneAPI.html (api scintilla)
     - http://scite-ru.googlecode.com/svn/trunk/pack/tools/ (plein d'idées lua)
+    
     
 
 Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : ::
@@ -467,7 +470,7 @@ CTRL+SHIFT+i : affiche dans la console SciTE les infos du fichiers pour copier/c
 
 
 extSciTE/extman/scite_lua/52outputToEditor.lua
---------------------------------------------
+------------------------------------------------------------------------------------------------
 
 CTRL+7 : copier le contenu de la console dans un fichier ``console.txt`` et ouvrir ce fichier dans SciTE.
 
