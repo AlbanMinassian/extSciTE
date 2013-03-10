@@ -1,9 +1,12 @@
 .. -*- coding: utf-8 -
+
 @TODO extSciTE
 
-.. 
+..
 
     Todo :
+    
+    - dir : si GTK alors utiliser carcatère de tree ( ├── )
     
     bookmark => pointer sur printTree avec ``-L 1`` ?? ( ou option extscite.bookmark.use.tree=[0|1] avec 0 par défaut
     tree => ajouter ``..`` pour remonter comme dans dir/ls
