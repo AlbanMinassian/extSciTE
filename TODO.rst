@@ -5,6 +5,9 @@
 ..
 
     Todo :
+
+
+    ajouter capture écran utf16table + ajouter section dans README.txt (et corriger code pour ecrire dans fichier utf16table.txt + ouvrir monospace )
     
     - dir : si GTK alors utiliser carcatère de tree ( ├── )
     
