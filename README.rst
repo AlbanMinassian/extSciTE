@@ -288,8 +288,8 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     check.if.already.open=1
     open.dialog.in.file.directory=1
     find.replace.advanced=1
-    # code.page=65001
-    # output.code.page=65001
+    code.page=65001
+    output.code.page=65001
     properties.directory.enable=1
     title.full.path=1
     title.show.buffers=1    
