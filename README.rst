@@ -54,8 +54,10 @@ Installation sous Linux
         -- charger les extensions *avant* d'exécuter extman.lua
         -- -------------------------------------------------------------------------------------------------------
         -- corriger le chemin des extensions (à revoir)
-        package.path = package.path..';/usr/share/lua/5.1/?.lua'
-        package.cpath = package.path..';/usr/lib/lua/5.1/?.so'
+        -- OLD UBUNTU : package.path = package.path..';/usr/share/lua/5.1/?.lua'
+        -- OLD UBUNTU : package.cpath = package.path..';/usr/lib/lua/5.1/?.so'
+        package.path = package.path..';/usr/lib/x86_64-linux-gnu/lua/5.1/?.lua;/usr/share/lua/5.1/?.lua'
+        package.cpath = package.path..';/usr/lib/x86_64-linux-gnu/lua/5.1/?.so;/usr/share/lua/5.1/?.so'
         -- charger les extensions
         io = require "io";
         socket = require "socket";
