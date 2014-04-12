@@ -70,6 +70,14 @@ Installation sous Linux
         lfs = require "lfs";
         require "luasql.sqlite3";
 
+
+        -- -------------------------------------------------------------------------------------------------------
+        -- Si SciTE installé avec apt-get alors ``ext.lua.directory`` retourne ``$HOME/scite_lua``
+        -- DONC CORRIGER EMPLACEMENT POUR ExtSciTE
+        -- -------------------------------------------------------------------------------------------------------
+        path = '/home/alban/extSciTE/extman/scite_lua'
+        props['ext.lua.directory'] = path
+
         -- -------------------------------------------------------------------------------------------------------
         -- extman.lua
         -- ce script exécutera ensuite les scripts présents dans le répertoire extman/scite_lua
