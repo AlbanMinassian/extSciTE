@@ -20,10 +20,10 @@ Installation sous Linux
 
 - ``sudo apt-get install git``
 - ``sudo apt-get install lua5.1``
-- ``sudo apt-get install liblua5.1-socket2``
+- ``sudo apt-get install liblua5.1-socket2`` (ou ``sudo apt-get install lua-socket``)
 - ``sudo apt-get install liblua5.1-socket-dev``
 - ``sudo apt-get install lua5.1-filesystem``
-- ``sudo apt-get install lua5.1-sql-sqlite3-2``
+- ``sudo apt-get install lua5.1-sql-sqlite3`` ( ou ``sudo apt-get install lua5.1-sql-sqlite3-2`` selon version)
 
 
 - Lancer la console et exécuter la commande ``lua`` : un prompt s'affiche invitant à saisir du code lua. Tester le code ``socket = require "socket";print(socket._VERSION);`` sans génèrer une erreur dans la console. 
@@ -75,7 +75,7 @@ Installation sous Linux
         -- Si SciTE installé avec apt-get alors ``ext.lua.directory`` retourne ``$HOME/scite_lua``
         -- DONC CORRIGER EMPLACEMENT POUR ExtSciTE
         -- -------------------------------------------------------------------------------------------------------
-        path = '/home/alban/extSciTE/extman/scite_lua'
+        path = '/home/myloginname/extSciTE/extman/scite_lua'
         props['ext.lua.directory'] = path
 
         -- -------------------------------------------------------------------------------------------------------
