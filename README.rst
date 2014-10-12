@@ -311,6 +311,7 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     tabsize=4
     indent.size=4
     use.tabs=0
+    strip.trailing.spaces=1
     
     # The load.on.activate property causes SciTE to check whether the current file has been updated by another process whenever it is activated. This is useful when another editor such as a WYSIWYG HTML editor, is being used in conjunction with SciTE.
     # When both this and load.on.activate are set to 1, SciTE will ask if you really want to reload the modified file, giving you the chance to keep the file as it is. By default this property is disabled, causing SciTE to reload the file without bothering you. 
