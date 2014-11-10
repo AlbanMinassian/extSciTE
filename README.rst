@@ -9,7 +9,7 @@ Ma productivité acquise sous Linux est conservée quand je passe sur Windows.
 J'utilise ``extSciTE`` comme mémo pour réinstaller cet éditeur sur une nouvelle machine
 et rapidement ajouter quelques scripts très pratiques pour un usage quotidien.
 
-``extSciTE`` a pour vocation de fonctionner avec le programme ``SciTE`` standard (à la différence du projet `scite-ru <http://scite-ru.googlecode.com>`_).
+``extSciTE`` a pour vocation de fonctionner avec le programme ``SciTE`` standard.
 
 extSciTE
 =============================
@@ -95,7 +95,7 @@ Installation sous Linux
 Installation sous Windows
 --------------------------------------------
 
-- Installer luaforwindows : http://code.google.com/p/luaforwindows/
+- Installer luaforwindows : http://code.google.com/p/luaforwindows/ (inclus luarock)
 - Installer tree (dans le %PATH%) : http://gnuwin32.sourceforge.net/packages/tree.htm 
 - Lancer la console et exécuter la commande ``lua`` : un prompt s'affiche invitant à saisir du code lua. Tester le code ``socket = require "socket";print(socket._VERSION);`` sans génèrer une erreur dans la console. Si erreur alors corriger les variables d'environnement :
 
@@ -339,11 +339,6 @@ Editer ``SciTEUser.properties`` (menu --> Options --> Open User Options File) : 
     statusbar.visible=1
     statusbar.number=1
     statusbar.text.1=li=$(LineNumber) co=$(ColumnNumber) $(StatusMsg)
-
-Editer ``cpp.properties`` (menu --> Options --> Edit properties -> Open cpp properties) : ::
-
-    # associer fichier json au lexer cpp.properties (comme les fichiers *.js)
-    file.patterns.js=*.js;*.es;*.json
 
 Facultatif : installer la police consolas pour la console : 
 
