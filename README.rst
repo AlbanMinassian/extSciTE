@@ -162,9 +162,10 @@ Installation sous Windows
         :alt: chargement des modules extSciTE
         :align: center
 
-    Si la console SciTE indique des problèmes avec lua, la solution radicale est la suivante :
+Si la console SciTE indique des problèmes avec lua, la solution radicale est la suivante :
 
         - Copier tous les fichiers du répertoire ``C:\PathToLua\clibs\*`` dans ``wscite``.
+        - Copier le répertoire de ``C:\PathToLua\lua5.1.dll`` et ``C:\PathToLua\lua51.dll`` dans ``wscite``.
         - Copier le répertoire de ``C:\PathToLua\lua`` dans ``wscite``.
         - Redémarrer SciTE
 
